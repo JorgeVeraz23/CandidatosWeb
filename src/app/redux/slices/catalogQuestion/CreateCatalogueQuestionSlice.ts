@@ -1,0 +1,43 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { createCatalogQuestion } from 'app/redux/actions/CatalogQuestionActions/CatalogQuestionActions';
+
+export interface initialStateSlice {
+  data: boolean | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: initialStateSlice = {
+  data: null,
+  error: null,
+  loading: false
+}
+
+export const createCatalogueQuestionSlice = createSlice({
+  name: 'CreateCatalogueQuestionSlice',
+  initialState: initialState,
+  reducers: {
+    resetState: (state) => {
+      state.data = null;
+      state.loading = false;
+      state.error = null;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createCatalogQuestion.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(createCatalogQuestion.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(createCatalogQuestion.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || 'Something went wrong';
+      });
+  },
+})
+
+export default createCatalogueQuestionSlice.reducer
