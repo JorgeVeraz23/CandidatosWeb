@@ -79,6 +79,7 @@ import CrearPartidoVista from 'layouts/partido/create-partido';
 import PartidoList from 'layouts/partido/mostrar-partido';
 //Transparencia
 import CrearTransparenciaVista from 'layouts/transparencia/create-transparencia';
+import TransparenciaList from 'layouts/transparencia/mostrar-transparencia';
 
 const routesV2 = [
   { type: "title", title: "Catalogos", key: "title-catalogos" },
@@ -107,8 +108,8 @@ const routesV2 = [
         component: <CrearPartidoVista />
       },
       {
-        name: "Mostrar Cargo",
-        key: "mostrar-cargo",
+        name: "Mostrar Partido",
+        key: "mostrar-partido",
         route: "/catalogs/mostrar-partido",
         component: <PartidoList />
       },
@@ -119,10 +120,10 @@ const routesV2 = [
         component: <CrearTransparenciaVista />
       },
       {
-        name: "Mostrar Cargo",
-        key: "mostrar-cargo",
-        route: "/catalogs/mostrar-partido",
-        component: <PartidoList />
+        name: "Mostrar Transparencia",
+        key: "mostrar-transparencia",
+        route: "/catalogs/mostrar-transparencia",
+        component: <TransparenciaList />
       },
 
 

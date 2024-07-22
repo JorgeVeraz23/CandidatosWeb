@@ -18,10 +18,10 @@ Coded by www.creative-tim.com
  * You can add new color using this file.
  * You can customized the colors for the entire Soft UI Dashboard PRO React using thie file.
  */
-const primary = "#fbb03b";
-const primaryContainer = "#ffddb4";
-const secondary = "#705b40";
-const tertiary = "#0071bc";
+const primary = "#662D87";
+const primaryContainer = "#3F195B";
+const secondary = "#0071BC";
+const tertiary = "#004E89";
 const error = "#ba1a1a";
 const outline = "#b3b3b3";
 const background = "#fffbff";
@@ -30,8 +30,8 @@ const warning = "#FE7A36";
 
 const gradientColors = {
   primary: {
-    main: "#f17400",
-    state: "#fbb13b",
+    main: "#662D87",
+    state: "#9D85B1",
     border: "#fedeac"
   },
 
@@ -69,7 +69,7 @@ const colors = {
 
   primary: {
     main: primary,
-    focus: "#EF9F21",
+    focus: "#9a5b00",
     container: primaryContainer
   },
 
