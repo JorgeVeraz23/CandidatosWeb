@@ -77,7 +77,7 @@ export const ApptelinkDashboard = () => {
       {layout === "dashboard" &&
           <Sidenav
             color={sidenavColor}
-            brand={brand}
+            brand={ElectoAnalyzer}
             brandName="ElectoAnalyzer"
             routes={rol === 'Inspector' ? routesV3: routes}
             onMouseEnter={handleOnMouseEnter}
@@ -88,7 +88,7 @@ export const ApptelinkDashboard = () => {
     <DashboardLayout>
           <Sidenav
             color={sidenavColor}
-          brand={brand}
+          brand={ElectoAnalyzer}
             brandName="ElectoAnalyzer"
             routes={rol === 'Inspector' ? routesV3: routes}
             onMouseEnter={handleOnMouseEnter} 
