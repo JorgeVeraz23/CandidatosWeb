@@ -17,6 +17,8 @@ import Sidenav from "examples/Sidenav";
 import Default from "layouts/dashboards/default"
 import brand from "assets/images/icono-banacheck-01.png";
 import ShowCatalogsItems from "layouts/catalogs/get-detail-catalogs";
+import ElectoAnalyzer from "assets/images/illustrations/electroAnalyzer.png"
+
 export const ApptelinkDashboard = () => {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, direction, layout, openConfigurator, sidenavColor } = controller;
@@ -76,7 +78,7 @@ export const ApptelinkDashboard = () => {
           <Sidenav
             color={sidenavColor}
             brand={brand}
-            brandName="BanaCheck"
+            brandName="ElectoAnalyzer"
             routes={rol === 'Inspector' ? routesV3: routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}/>
@@ -87,7 +89,7 @@ export const ApptelinkDashboard = () => {
           <Sidenav
             color={sidenavColor}
           brand={brand}
-            brandName="BanaCheck"
+            brandName="ElectoAnalyzer"
             routes={rol === 'Inspector' ? routesV3: routes}
             onMouseEnter={handleOnMouseEnter} 
             onMouseLeave={handleOnMouseLeave}
@@ -101,7 +103,7 @@ export const ApptelinkDashboard = () => {
             <Route path="inspecciones-realizadas/imagenes" element={<Imagenes />} />
             <Route path="inicio/bienvenido" element={<Default />} />
           </Routes>
-          <Footer company={{ href: "https://apptelink.com/", name: "AppTelink" }} />
+          <Footer company={{ href: "https://apptelink.com/", name: "MariaSystems" }} />
     
     </DashboardLayout>
   )

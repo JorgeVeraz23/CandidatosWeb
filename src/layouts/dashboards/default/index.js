@@ -21,7 +21,7 @@ function Default() {
                 variant={window.innerWidth < values.sm ? "h3" : "h2"}
                 fontWeight="bold"
               >
-                Bienvenido a BanaCheck
+                Bienvenido a ElectoAnalyzer
               </SoftTypography>
             </SoftBox>
 
