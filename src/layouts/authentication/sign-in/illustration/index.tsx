@@ -16,6 +16,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility"; // Agrega la import
 import { URL_API } from 'app/api/urls/urls'
 import logobanacheck from "assets/images/illustrations/logo-banacheck.png";
 import logobanacheckwhite from "assets/images/illustrations/logobanacheckwhite.png";
+import ElectroAnalyzer from "assets/images/illustrations/electroAnalyzer.png";
 import { loggingUserSlice } from "app/redux/slices/ui/uiSlices";
 import { UserEntity } from "app/api/domain/entities/AuthEntities/UserEntity";
 import { useAppSelector } from "app/redux/hooks";
@@ -84,10 +85,10 @@ function Illustration() {
   return (
     <IllustrationLayout
       title="Iniciar Sesión"
-      color="secondary"
+      color="dark"
       description="Ingresa tu correo electrónico y contraseña para iniciar sesión."
       illustration={{
-        image: logobanacheckwhite,
+        image: ElectroAnalyzer,
         title: "",
         description: "",
       }}
