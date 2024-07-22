@@ -69,6 +69,17 @@ import Questions from "layouts/pregunta/preguntas"
 import CreateQuestion from "layouts/pregunta/crear"
 import QuizIcon from '@mui/icons-material/Quiz';
 import ShowInspectors from 'layouts/Inspector/mostrar-inspectores';
+
+
+//Cargo
+import CrearCargoVista from 'layouts/cargo/create-cargo';
+import CargoList from 'layouts/cargo/mostrar-cargo';
+//Partido
+import CrearPartidoVista from 'layouts/partido/create-partido';
+import PartidoList from 'layouts/partido/mostrar-partido';
+//Transparencia
+import CrearTransparenciaVista from 'layouts/transparencia/create-transparencia';
+
 const routesV2 = [
   { type: "title", title: "Catalogos", key: "title-catalogos" },
   {
@@ -78,41 +89,43 @@ const routesV2 = [
     icon: <MenuBookIcon />,
     collapse: [
       {
-        name: "Mostrar Clientes",
-        key: "mostrar-clientes",
-        route: "/catalogos/mostrar-clientes",
-        component: <ShowClient />,
+        name: "Crear Cargo",
+        key: "crear-cargo",
+        route: "/catalogs/crear-cargo",
+        component: <CrearCargoVista />
       },
       {
-        name: "Crear Clientes",
-        key: "crear-clientes",
-        route: "/catalogos/crear-clientes",
-        component: <CreateClient />
+        name: "Mostrar Cargo",
+        key: "mostrar-cargo",
+        route: "/catalogs/mostrar-cargo",
+        component: <CargoList />
       },
       {
-        name: "Mostrar Inspectores",
-        key: "mostrar-inspectores",
-        route: "/catalogos/mostrar-inspectores",
-        component: <ShowInspectors />
+        name: "Crear Partido",
+        key: "crear-partido",
+        route: "/catalogs/crear-partido",
+        component: <CrearPartidoVista />
       },
       {
-        name: "Mostrar Selectores",
-        key: "mostrar-selectores",
-        route: "/catalogos/mostrar-selectores",
-        component: <ShowCatalogs />
+        name: "Mostrar Cargo",
+        key: "mostrar-cargo",
+        route: "/catalogs/mostrar-partido",
+        component: <PartidoList />
       },
       {
-        name: "Crear Selectores",
-        key: "crear-selectores",
-        route: "/catalogos/crear-selectores",
-        component: <CreateCatalogQuestion />
+        name: "Crear Transparencia",
+        key: "crear-transparencia",
+        route: "/catalogs/crear-transparencia",
+        component: <CrearTransparenciaVista />
       },
-     /* {
-        name: "Crear Item de Selectores",
-        key: "crear-selectores-items",
-        route: "/catalogos/crear-selectores-items",
-        component: <ShowCatalogsItems />
-      }*/
+      {
+        name: "Mostrar Cargo",
+        key: "mostrar-cargo",
+        route: "/catalogs/mostrar-partido",
+        component: <PartidoList />
+      },
+
+
     ],
   },
   

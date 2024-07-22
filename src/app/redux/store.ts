@@ -77,9 +77,52 @@ import QuestionTypeReducer from './slices/questionType/questionTypeSlice';
 //Login USER SLICE
 import LoginUserReducer from './slices/user/LoginUserSlice';
 
+//Cargo Slice
+import MostrarCargoReducer from './slices/cargo/MostrarCargoSlice';
+import CrearCargoReducer from './slices/cargo/CrearCargoSlice';
+import ActualizarCargoReducer from './slices/cargo/ActualizarCargoSlice';
+import ObtenerCargoPorIdReducer from './slices/cargo/ObtenerCargoPorIdSlice';
+import EliminarCargoReducer from './slices/cargo/EliminarCargoSlice';
+
+//Partido Slice
+import MostrarPartidoReducer from './slices/partido/MostrarPartidoSlice';
+import CrearPartidoReducer from './slices/partido/CrearPartidoSlice';
+import ActualizarPartidoReducer from './slices/partido/ActualizarPartidoSlice';
+import EliminarPartidoReducer from './slices/partido/EliminarPartidoSlice';
+import ObtenerPartidoPorIdReducer from './slices/partido/ObtenerPartidoPorIdSlice';
+
+//Transparencia Slice
+import MostrarTransparenciaReducer from './slices/Transparencia/MostrarTransparenciaSlice';
+import CrearTransparenciaReducer from './slices/Transparencia/CrearTransparenciaSlice';
+import ActualizarTransparenciaReducer from './slices/Transparencia/ActualizarTransparenciaSlice';
+import EliminarTransparenciaReducer from './slices/Transparencia/EliminarTransparenciaSlice';
+import ObtenerTransparenciaReducer from './slices/Transparencia/ObtenerTransparenciaSlice';
+
+//Selector Slice
+import KeyValueCandidatoReducer from './slices/KeyValue/KeyValueCandidatoSlice';
 
 export const store = configureStore({
   reducer: {
+    //CARGO
+    crearCargo: CrearCargoReducer,
+    actualizarCargo: ActualizarCargoReducer,
+    mostrarCargoPorId: ObtenerCargoPorIdReducer,
+    eliminarCargo: EliminarCargoReducer,
+    mostrarCargo: MostrarCargoReducer,
+    //SELECTOR
+    keyValueCandidato: KeyValueCandidatoReducer,
+    //PARTIDO
+    crearPartido: CrearPartidoReducer,
+    mostrarPartido: MostrarPartidoReducer,
+    actualizarPartido: ActualizarPartidoReducer,
+    eliminarPartido: EliminarPartidoReducer,
+    obtenerPartido: ObtenerPartidoPorIdReducer,
+    //TRANSPARENCIA
+    crearTransparencia: CrearTransparenciaReducer,
+    mostrarTransparencia: MostrarTransparenciaReducer,
+    actualizarTransparencia: ActualizarTransparenciaReducer,
+    eliminarTransparencia: EliminarTransparenciaReducer,
+    obtenerTransparencia: ObtenerTransparenciaReducer,
     // CATALOGUE
     catalogueInspectionOrder: CatalogueInspectionOrderReducer,
     catalogueClient: CatalogueClientReducer,

@@ -97,6 +97,40 @@ const REPORTS_PREFIX = "Reports/";
 export const GETEXCEL_REPORT = (FromDate, ToDate, IdInspectionForm)=> `${BASE_URL}api/${REPORTS_PREFIX}ResumeInspectionReport?FromDate=${FromDate}&ToDate=${ToDate}&IdInspectionForm=${IdInspectionForm}`;
 
 
+//#region Cargo
+const CARGO_PREFIX = "Cargo/";
+export const GETALL_CARGO = `${CARGO_PREFIX}GetAllCargo`;
+export const CREATE_CARGO = `${CARGO_PREFIX}CrearCargo`;
+export const GET_CARGO = (idCargo: number) => `${CARGO_PREFIX}GetCargo?IdCargo=${idCargo}`;
+export const DELETE_CARGO = (idCargo: number) => `${CARGO_PREFIX}EliminarCargo?IdCargo=${idCargo}`;
+export const UPDATE_CARGO = `${CARGO_PREFIX}ActualizarCargo`;
+//#endregion
+
+//#region Candidato
+const CANDIDATO_PREFIX = "Candidato/";
+export const KEY_VALUE_CANDIDATO = `${CANDIDATO_PREFIX}KeyValueCandidato`;
+//#endregion
+
+//#region Partido
+const PARTIDO_PREFIX = "Partido/";
+export const GETALL_PARTIDOS = `${PARTIDO_PREFIX}GetAllPartido`;
+export const CREATE_PARTIDO = `${PARTIDO_PREFIX}CrearPartidos`;
+export const GET_PARTIDO = (idPartido: number) => `${PARTIDO_PREFIX}GetPartidos?IdPartido=${idPartido}`;
+export const DELETE_PARTIDO = (idPartido: number) => `${PARTIDO_PREFIX}EliminarPartido?IdPartidos=${idPartido}`;
+export const UPDATE_PARTIDO = `${PARTIDO_PREFIX}ActualizarPartido`;
+//#endregion
+
+//#region Transpariencia
+const TRANSPARIENCIA_PREFIX = "Transpariencia/";
+export const GETALL_TRANSPARIENCIA = `${TRANSPARIENCIA_PREFIX}GetAllTranspariencia`;
+export const CREATE_TRANSPARIENCIA = `${TRANSPARIENCIA_PREFIX}CrearTranspariencia`;
+export const GET_TRANSPARIENCIA = (idTranspariencia: number) => `${TRANSPARIENCIA_PREFIX}GetTranspariencia?IdTranspariencia=${idTranspariencia}`;
+export const DELETE_TRANSPARIENCIA = (idTranspariencia: number) => `${TRANSPARIENCIA_PREFIX}EliminarTranspariencia?IdTranspariencia=${idTranspariencia}`;
+export const UPDATE_TRANSPARIENCIA = `${TRANSPARIENCIA_PREFIX}ActualizarTranspariencia`;
+//#endregion
+
+
+
 //Security
 const SECURITY_PREFIX = "Security/";
 export const LOGIN_USUARIO = `${SECURITY_PREFIX}login`;
