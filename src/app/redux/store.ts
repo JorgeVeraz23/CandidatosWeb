@@ -98,6 +98,13 @@ import ActualizarTransparenciaReducer from './slices/Transparencia/ActualizarTra
 import EliminarTransparenciaReducer from './slices/Transparencia/EliminarTransparenciaSlice';
 import ObtenerTransparenciaReducer from './slices/Transparencia/ObtenerTransparenciaSlice';
 
+//Propuesta Slice
+import MostrarPropuestaReducer from './slices/propuesta/MostrarPropuestaSlice';
+import CrearPropuestaReducer from './slices/propuesta/CrearPropuestaSlice';
+import ActualizarPropuestaReducer from './slices/propuesta/ActualizarPropuestaSlice';
+import ObtenerPropuestaReducer from './slices/propuesta/ObtenerPropuestaSlice';
+import EliminarPropuestaReducer from './slices/propuesta/EliminarPropuestaSlice';
+
 //Selector Slice
 import KeyValueCandidatoReducer from './slices/KeyValue/KeyValueCandidatoSlice';
 
@@ -117,6 +124,12 @@ export const store = configureStore({
     actualizarPartido: ActualizarPartidoReducer,
     eliminarPartido: EliminarPartidoReducer,
     obtenerPartido: ObtenerPartidoPorIdReducer,
+    //PROPUESTA
+    crearPropuesta: CrearPropuestaReducer,
+    actualizarPropuesta: ActualizarPropuestaReducer,
+    mostrarPropuesta: MostrarPropuestaReducer,
+    eliminarPropuesta: EliminarPropuestaReducer,
+    obtenerPorpuesta: ObtenerPropuestaReducer,
     //TRANSPARENCIA
     crearTransparencia: CrearTransparenciaReducer,
     mostrarTransparencia: MostrarTransparenciaReducer,

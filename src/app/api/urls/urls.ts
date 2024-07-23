@@ -129,7 +129,14 @@ export const DELETE_TRANSPARIENCIA = (idTranspariencia: number) => `${TRANSPARIE
 export const UPDATE_TRANSPARIENCIA = `${TRANSPARIENCIA_PREFIX}ActualizarTranspariencia`;
 //#endregion
 
-
+//#region Propuesta
+const PROPUESTA_PREFIX = "Propuesta/";
+export const GETALL_PROPUESTA = `${PROPUESTA_PREFIX}GetAllPropuesta`;
+export const CREAR_PROPUESTA =`${PROPUESTA_PREFIX}CrearPropuesta`;
+export const GET_PROPUESTA = (idPropuesta: number) => `${PROPUESTA_PREFIX}GetPropuesta?IdPropuesta=${idPropuesta}`;
+export const DELETE_PROPUESTA = (idPropuesta: number) => `${PROPUESTA_PREFIX}EliminarPropuesta?IdPropuesta=${idPropuesta}`;
+export const UPDATE_PROPUESTA = `${PROPUESTA_PREFIX}ActualizarPropuesta`;
+//#endregion
 
 //Security
 const SECURITY_PREFIX = "Security/";
