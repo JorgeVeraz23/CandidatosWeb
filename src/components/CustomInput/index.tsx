@@ -5,15 +5,15 @@ import { Box, Typography } from '@mui/material';
 
 interface CustomInputProps {
     onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    value?: string;
+    value?: string | number;
     placeholder?: string;
     isRequired?: boolean;
     isDisabled?: boolean;
-    type?: string;
+    type?: 'text' | 'number' | 'file' | 'date' | 'time' | 'datetime-local' | 'email' | 'password' | 'tel' | 'url';
     accept?: string;
 }
 
-const StyledTextField = styled(TextField)<{ valueofcontrol: string, isrequired?: string }>(({ theme, valueofcontrol, isrequired }) => ({
+const StyledTextField = styled(TextField)<{ valueofcontrol: string | number, isrequired?: string }>(({ theme, valueofcontrol, isrequired }) => ({
     width: '100%',
     '& .MuiInputBase-root': {
         minWidth: '100% !important',
@@ -21,13 +21,13 @@ const StyledTextField = styled(TextField)<{ valueofcontrol: string, isrequired?:
         margin: 0,
         borderRadius: '4px !important',
         border: `1px solid ${theme.palette.grey[400]}`,
-        borderColor: isrequired == "true" && valueofcontrol == "" ? theme.palette.error.main : theme.palette.grey[400],
+        borderColor: isrequired === "true" && valueofcontrol === "" ? theme.palette.error.main : theme.palette.grey[400],
         '&:hover': {
-            borderColor: isrequired == "true" && valueofcontrol == "" ? theme.palette.error.main : theme.palette.grey[500],
+            borderColor: isrequired === "true" && valueofcontrol === "" ? theme.palette.error.main : theme.palette.grey[500],
         },
         '&.Mui-focused': {
-            borderColor: isrequired == "true" && valueofcontrol == "" ? theme.palette.error.main : theme.palette.primary.main,
-            boxShadow: isrequired == "true" && valueofcontrol == "" ? "none" : `0 0 1px 1px ${theme.palette.primary.main}`,
+            borderColor: isrequired === "true" && valueofcontrol === "" ? theme.palette.error.main : theme.palette.primary.main,
+            boxShadow: isrequired === "true" && valueofcontrol === "" ? "none" : `0 0 1px 1px ${theme.palette.primary.main}`,
         },
     },
     '& .Mui-disabled': {
@@ -56,13 +56,20 @@ const CustomInput: React.FC<CustomInputProps> = ({
     accept = ""
 }) => {
     const theme = useTheme();
-    const [inputValue, setInputValue] = useState<string>(value);
+    const [inputValue, setInputValue] = useState<string | number>(value);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        let newValue: string | number = event.target.value;
+
+        if (type === 'number') {
+            newValue = event.target.value === '' ? '' : Number(event.target.value);
+        }
+
         if (onChange !== undefined) {
             onChange(event);
         }
-        setInputValue(event.target.value);
+
+        setInputValue(newValue);
     }
 
     return (
@@ -70,7 +77,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
             <StyledTextField
                 disabled={isDisabled}
                 type={type}
-                value={ type != "file" ? value : null}
+                value={type !== "file" ? inputValue : ''}
                 onChange={(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => handleInputChange(event)}
                 placeholder={placeholder}
                 theme={theme}
@@ -79,7 +86,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
                 inputProps={{ accept: accept }}
                 InputLabelProps={{ shrink: true }}
             />
-            {isRequired && value.length == 0 && (
+            {isRequired && (typeof value === 'string' && value.length === 0) && (
                 <Typography
                     fontSize={12}
                     color={theme.palette.error.main}

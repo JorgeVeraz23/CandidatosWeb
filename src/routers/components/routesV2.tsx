@@ -69,8 +69,8 @@ import Questions from "layouts/pregunta/preguntas"
 import CreateQuestion from "layouts/pregunta/crear"
 import QuizIcon from '@mui/icons-material/Quiz';
 import ShowInspectors from 'layouts/Inspector/mostrar-inspectores';
-
-
+import GroupsIcon from '@mui/icons-material/Groups';
+import HubIcon from '@mui/icons-material/Hub';
 //Cargo
 import CrearCargoVista from 'layouts/cargo/create-cargo';
 import CargoList from 'layouts/cargo/mostrar-cargo';
@@ -101,7 +101,7 @@ const routesV2 = [
       {
         name: "Mostrar Cargo",
         key: "mostrar-cargo",
-        route: "/catalogs/mostrar-cargo",
+        route: "/cargo/mostrar-cargo",
         component: <CargoList />
       },
       {
@@ -144,14 +144,14 @@ const routesV2 = [
 
     ],
   },
-  
 
-  { type: "title", title: "Inspecciones", key: "title-inspection" },
+
+  { type: "title", title: "Candidatos", key: "title-candidatos" },
   {
     type: "collapse",
-    name: "Inspecciones Realizadas",
-    key: "inspecciones-realizadas",
-    icon: <AssignmentIcon />,
+    name: "Candidatos",
+    key: "candidatos",
+    icon: <GroupsIcon />,
     collapse: [
       {
         name: "Ingresos",

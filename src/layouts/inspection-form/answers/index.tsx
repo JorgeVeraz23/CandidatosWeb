@@ -357,7 +357,7 @@ const [downloadProgress, setDownloadProgress] = useState(false);
         return (
           <CustomInput
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange(idQuestion, e.target.value)}
-            type="datetime"
+            type="datetime-local"
             // isRequired={isRequired}
             isRequired={
               estado === 'FINAL' && isRequired === false ? false : 

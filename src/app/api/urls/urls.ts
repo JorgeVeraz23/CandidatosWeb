@@ -109,6 +109,11 @@ export const UPDATE_CARGO = `${CARGO_PREFIX}ActualizarCargo`;
 //#region Candidato
 const CANDIDATO_PREFIX = "Candidato/";
 export const KEY_VALUE_CANDIDATO = `${CANDIDATO_PREFIX}KeyValueCandidato`;
+export const GETALL_CANDIDATO = `${CANDIDATO_PREFIX}GetAllCandidato`;
+export const CREATE_CANDIDATO = `${CANDIDATO_PREFIX}CrearCandidato`;
+export const GET_CANDIDATO = (idCandidato: number) => `${CANDIDATO_PREFIX}GetCandidatos?IdCandidato=${idCandidato}`;
+export const DELETE_CANDIDATO = (idCandidato: number) => `${CANDIDATO_PREFIX}EliminarCandidato?IdCandidato=${idCandidato}`;
+export const UPDATE_CANDIDATO = `${CANDIDATO_PREFIX}ActualizarCandidatos`;
 //#endregion
 
 //#region Partido
@@ -137,6 +142,8 @@ export const GET_PROPUESTA = (idPropuesta: number) => `${PROPUESTA_PREFIX}GetPro
 export const DELETE_PROPUESTA = (idPropuesta: number) => `${PROPUESTA_PREFIX}EliminarPropuesta?IdPropuesta=${idPropuesta}`;
 export const UPDATE_PROPUESTA = `${PROPUESTA_PREFIX}ActualizarPropuesta`;
 //#endregion
+
+
 
 //Security
 const SECURITY_PREFIX = "Security/";

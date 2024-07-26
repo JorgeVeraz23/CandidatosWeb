@@ -105,6 +105,13 @@ import ActualizarPropuestaReducer from './slices/propuesta/ActualizarPropuestaSl
 import ObtenerPropuestaReducer from './slices/propuesta/ObtenerPropuestaSlice';
 import EliminarPropuestaReducer from './slices/propuesta/EliminarPropuestaSlice';
 
+//Candidato Slice
+import MostrarCandidatoReducer from './slices/candidato/MostrarCandidatoSlice';
+import CreateCandidatoReducer from './slices/candidato/CreateCandidatoSlice';
+import ActualizarCandidatoReducer from './slices/candidato/ActualizarCandidatoSlice';
+import ObtenerCandidatoReducer from './slices/candidato/ObtenerCandidatoSlice';
+import EliminarCandidatoReducer from './slices/candidato/EliminarCandidatoSlice';
+
 //Selector Slice
 import KeyValueCandidatoReducer from './slices/KeyValue/KeyValueCandidatoSlice';
 
@@ -136,6 +143,12 @@ export const store = configureStore({
     actualizarTransparencia: ActualizarTransparenciaReducer,
     eliminarTransparencia: EliminarTransparenciaReducer,
     obtenerTransparencia: ObtenerTransparenciaReducer,
+    //CANDIDATO
+    crearCandidato: CreateCandidatoReducer,
+    mostrarCandidato: MostrarCandidatoReducer,
+    actualizarCandidato: ActualizarCandidatoReducer,
+    EliminarCandidato: EliminarCandidatoReducer,
+    obtenerCandidato: ObtenerCandidatoReducer,
     // CATALOGUE
     catalogueInspectionOrder: CatalogueInspectionOrderReducer,
     catalogueClient: CatalogueClientReducer,
