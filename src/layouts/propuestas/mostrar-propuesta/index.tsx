@@ -34,14 +34,16 @@ import { Checkbox, CircularProgress, Tooltip } from "@mui/material";
 //Entities
 import { MostrarPropuestaEntity, EditarPropuestaEntity } from "app/api/domain/entities/PropuestasEntities/PropuestaEntity";
 //Actions
-import { deleteTransparencia, } from "app/redux/actions/TransparenciaActions/TransparenciaActions";
-import { deleteTransparencia, getAllTransparencia, getTrasnparenciaById, editTransparencia } from "app/redux/actions/TransparenciaActions/TransparenciaActions";
+import { deletePropuesta, getAllPropuesta, getPropuestaById, editPropuesta } from "app/redux/actions/PropuestaActions/PropuestaActions";
 //Slices
-import { deleteTransparenciaSlice } from "app/redux/slices/Transparencia/EliminarTransparenciaSlice";
-import { editTransparenciaSlice } from "app/redux/slices/Transparencia/ActualizarTransparenciaSlice";
-import { getAllTransparenciaSlice } from "app/redux/slices/Transparencia/MostrarTransparenciaSlice";
-import { getTransparenciaSlice } from "app/redux/slices/Transparencia/ObtenerTransparenciaSlice";
-import { EditarPropuestaEntity } from "app/api/domain/entities/PropuestasEntities/PropuestaEntity";
+import { deletePropuestaSlice } from "app/redux/slices/propuesta/EliminarPropuestaSlice";
+import { editPropuestaSlice } from "app/redux/slices/propuesta/ActualizarPropuestaSlice";
+import { getAllPropuestaSlice } from "app/redux/slices/propuesta/MostrarPropuestaSlice";
+import { getPropuestaSlice } from "app/redux/slices/propuesta/ObtenerPropuestaSlice";
+
+
+import CustomSelect from "components/CustomSelect";
+
 
 
 
@@ -50,18 +52,24 @@ export default function PropuestaList() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-    const mostrarPropuestaState = useAppSelector(state => state.mostrarTransparencia);
+    const mostrarPropuestaState = useAppSelector(state => state.mostrarPropuesta);
     const obtenerPropuestaState = useAppSelector(state => state.obtenerPorpuesta)
     const actualizarPropuestaState = useAppSelector(state => state.actualizarPropuesta);
     const eliminarPropuestaState = useAppSelector(state => state.eliminarPropuesta);
 
+    const selectorCandidatoState = useAppSelector(state => state.keyValueCandidato);
 
   const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
+
+  const [optionCandidatoSelected, setOptionCandidatoSelected] = useState<{ value: string, label: string }>({
+    value: '', label: ''
+  });
+
   const [editPropuestaData, setEditPropuestaData] = useState<EditarPropuestaEntity>({
     idPropuesta: 0,
     titulo: '',
-    area: '',
     descripción: '',
+    area: '',
     idCandidato: 0,
   });
 
@@ -96,82 +104,96 @@ export default function PropuestaList() {
         icon: 'error',
         html: eliminarPropuestaState.error,
       });
-      dispatch(deleteTransparenciaSlice.actions.resetState());
-    } else if (eliminarTransparenciaState.data) {
+      dispatch(deletePropuestaSlice.actions.resetState());
+    } else if (eliminarPropuestaState.data) {
       showAlertAsync({
         title: 'Éxito',
         icon: 'success',
         html: 'Registro eliminado con éxito',
       });
-      dispatch(deleteTransparenciaSlice.actions.resetState());
-      dispatch(getAllTransparencia());
+      dispatch(deletePropuestaSlice.actions.resetState());
+      dispatch(getAllPropuesta());
     }
-  }, [eliminarTransparenciaState]);
+  }, [eliminarPropuestaState]);
 
   useEffect(() => {
-    if (actualizarTransparenciaState.error) {
+    if (actualizarPropuestaState.error) {
       showAlertAsync({
         title: 'Error',
         icon: 'error',
-        html: actualizarTransparenciaState.error,
+        html: actualizarPropuestaState.error,
       });
-      dispatch(editTransparenciaSlice.actions.resetState());
+      dispatch(editPropuestaSlice.actions.resetState());
       setOpenModalEdit(false);
-    } else if (actualizarTransparenciaState.data) {
+    } else if (actualizarPropuestaState.data) {
       showAlertAsync({
         title: 'Éxito',
         icon: 'success',
         html: 'Cambios guardados correctamente.',
       });
-      dispatch(editTransparenciaSlice.actions.resetState());
-      dispatch(getAllTransparencia());
+      dispatch(editPropuestaSlice.actions.resetState());
+      dispatch(getAllPropuesta());
     }
-  }, [actualizarTransparenciaState]);
+  }, [actualizarPropuestaState]);
 
   useEffect(() => {
-    if (obtenerTransparenciaState.data) {
-      setEditTransparenciaData(obtenerTransparenciaState.data);
+    if (obtenerPropuestaState.data) {
+      setEditPropuestaData(obtenerPropuestaState.data);
       showModalEdit();
-      dispatch(getTransparenciaSlice.actions.resetState());
-    } else if (obtenerTransparenciaState.error) {
+      dispatch(getPropuestaSlice.actions.resetState());
+    } else if (obtenerPropuestaState.error) {
       showAlertAsync({
         title: 'Error',
         icon: 'error',
-        html: obtenerTransparenciaState.error,
+        html: obtenerPropuestaState.error,
       });
-      dispatch(getTransparenciaSlice.actions.resetState());
+      dispatch(getPropuestaSlice.actions.resetState());
     }
-  }, [obtenerTransparenciaState]);
+  }, [obtenerPropuestaState]);
 
   const init = async () => {
     await handleResetData();
-    dispatch(getAllTransparencia());
+    dispatch(getAllPropuesta());
   }
 
-  const handleResetData = async () => {
-    dispatch(getAllTransparenciaSlice.actions.resetState());
+  const handleCandidatoSelectChange = (option: { value: string, label: string }) => {
+    setOptionCandidatoSelected(option);
+    handleSetData(option.value, 'idCandidato');
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: keyof EditarTransparienciaEntity) => {
-    handleSetEditData(event.target.value, field);
-  };
-
-  const handleSetEditData = (value: string, field: keyof EditarTransparienciaEntity) => {
-    setEditTransparenciaData((prevData) => ({
+  
+  const handleSetData = (value: string, field: keyof EditarPropuestaEntity) => {
+    setEditPropuestaData((prevData) => ({
       ...prevData,
       [field]: value
     }));
   };
 
-  const buildDataTable = (data: MostrarTransparienciaEntity[]) => {
+  const handleResetData = async () => {
+    dispatch(getAllPropuestaSlice.actions.resetState());
+  }
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: keyof EditarPropuestaEntity) => {
+    handleSetEditData(event.target.value, field);
+  };
+
+  const handleSetEditData = (value: string, field: keyof EditarPropuestaEntity) => {
+    setEditPropuestaData((prevData) => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
+
+  const buildDataTable = (data: MostrarPropuestaEntity[]) => {
     const columns = dataTableData.columns;
     const rows = [];
 
     for (const item of data) {
       rows.push({
-        declaracionesDeBienes: item.declaracionesDeBienes,
-        involucradoEnEscandalos: item.involucradoEnEscandalos ? 'Sí' : 'No',
-        evaluacionesDeEtica: item.evaluacionesDeEtica,
+        titulo: item.titulo,
+        descripción: item.descripción,
+        area: item.area,
+        nombreCandidato: item.nombreCandidato,
         actions: (
           <SoftBox display="flex">
             <SoftBox mr={1}>
@@ -181,7 +203,7 @@ export default function PropuestaList() {
                   color="error"
                   size="small"
                   iconOnly
-                  onClick={() => confirmDelete(item.idTranspariencia)}
+                  onClick={() => confirmDelete(item.idPropuesta)}
                 >
                   <DeleteIcon />
                 </SoftButton>
@@ -195,7 +217,7 @@ export default function PropuestaList() {
                   size="small"
                   margin="0 2px"
                   iconOnly
-                  onClick={() => getTransparencia(item.idTranspariencia)}
+                  onClick={() => getPropuesta(item.idPropuesta)}
                 >
                   <EditIcon />
                 </SoftButton>
@@ -221,11 +243,11 @@ export default function PropuestaList() {
   }
 
   const deleteRegister = (id: number) => {
-    dispatch(deleteTransparencia(id));
+    dispatch(deletePropuesta(id));
   }
 
   const editRegister = () => {
-    if (editTransparenciaData.idTranspariencia == 0 || editTransparenciaData.declaracionesDeBienes === '' || editTransparenciaData.evaluacionesDeEtica == '') {
+    if (editPropuestaData.idPropuesta == 0 || editPropuestaData.area === '' || editPropuestaData.descripción == '' || editPropuestaData.titulo == '' || editPropuestaData.idCandidato == 0) {
       showAlertAsync({
         title: 'Error',
         icon: 'error',
@@ -234,15 +256,15 @@ export default function PropuestaList() {
       return;
     }
     hideModalEdit();
-    dispatch(editTransparencia(editTransparenciaData));
+    dispatch(editPropuesta(editPropuestaData));
   }
 
-  const getTransparencia = (id: number) => {
-    dispatch(getTrasnparenciaById(id));
+  const getPropuesta = (id: number) => {
+    dispatch(getPropuestaById(id));
   }
 
-  const handleCheckboxChange = (fieldName: keyof EditarTransparienciaEntity) => {
-    setEditTransparenciaData((prevData) => ({
+  const handleCheckboxChange = (fieldName: keyof EditarPropuestaEntity) => {
+    setEditPropuestaData((prevData) => ({
       ...prevData,
       [fieldName]: !prevData[fieldName] // invertir el estado anterior
     }));
@@ -258,11 +280,12 @@ export default function PropuestaList() {
   }
 
   const resetModalState = () => {
-    setEditTransparenciaData({
-      idTranspariencia: 0,
-      evaluacionesDeEtica: '',
-      involucradoEnEscandalos: false,
-      declaracionesDeBienes: '',
+    setEditPropuestaData({
+      idPropuesta: 0,
+      idCandidato: 0,
+      descripción: '',
+      titulo: '',
+      area: '',
     });
   }
 
@@ -284,12 +307,12 @@ export default function PropuestaList() {
                 <SoftBox display="flex" flexDirection="column" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold">
-                      Declaraciones de Bienes
+                      Titulo
                     </SoftTypography>
                   </SoftBox>
                   <SoftInput
-                    value={editTransparenciaData.declaracionesDeBienes}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'declaracionesDeBienes')}
+                    value={editPropuestaData.titulo}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'titulo')}
                   />
                 </SoftBox>
               </Grid>
@@ -297,26 +320,42 @@ export default function PropuestaList() {
                 <SoftBox display="flex" flexDirection="column" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold">
-                      Involucrado en Escandalos
+                      Area
                     </SoftTypography>
                   </SoftBox>
-                  <Checkbox
-                                checked={editTransparenciaData.involucradoEnEscandalos}
-                                onChange={() => handleCheckboxChange('involucradoEnEscandalos')}
-                                />
+                  <SoftInput
+                    value={editPropuestaData.area}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'area')}
+                  />
                 </SoftBox>
               </Grid>
               <Grid item xs={12}>
                 <SoftBox display="flex" flexDirection="column" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold">
-                      Evaluaciones de Etica
+                      Descripción
                     </SoftTypography>
                   </SoftBox>
                   <SoftInput
-                    value={editTransparenciaData.evaluacionesDeEtica}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'evaluacionesDeEtica')}
+                    value={editPropuestaData.descripción}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'descripción')}
                   />
+                </SoftBox>
+              </Grid>
+              <Grid item xs={12}>
+                <SoftBox display="flex" flexDirection="column" height="100%">
+                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                    <SoftTypography component="label" variant="caption" fontWeight="bold">
+                      Candidato
+                    </SoftTypography>
+                  </SoftBox>
+                  <CustomSelect
+                                onChange={(option: { value: string, label: string }) => handleCandidatoSelectChange(option)}
+                                value={optionCandidatoSelected}
+                                placeholder="Candidato"
+                                isRequired={true}
+                                options={selectorCandidatoState.data}
+                              />
                 </SoftBox>
               </Grid>
             </Grid>
@@ -325,7 +364,7 @@ export default function PropuestaList() {
             <SoftButton color="secondary" onClick={hideModalEdit}>
               Cancelar
             </SoftButton>
-            <SoftButton color="primary" onClick={actualizarTransparenciaState.loading ? null : editRegister}>
+            <SoftButton color="primary" onClick={actualizarPropuestaState.loading ? null : editRegister}>
               Guardar
             </SoftButton>
           </DialogActions>
@@ -348,7 +387,7 @@ export default function PropuestaList() {
             Crear Transparencia
           </SoftButton>
         </SoftBox>
-        {mostrarTransparenciaState.loading ? (
+        {mostrarPropuestaState.loading ? (
           <SoftBox
             display="flex"
             justifyContent="center"
@@ -357,7 +396,7 @@ export default function PropuestaList() {
           >
             <CircularProgress />
           </SoftBox>
-        ) : mostrarTransparenciaState.error ? (
+        ) : mostrarPropuestaState.error ? (
           <SoftBox
             display="flex"
             justifyContent="center"
@@ -365,7 +404,7 @@ export default function PropuestaList() {
             sx={{ height: 'calc(100vh - 154px)' }}
           >
             <SoftTypography component="label">
-              {mostrarTransparenciaState.error ?? "Error desconocido"}
+              {mostrarPropuestaState.error ?? "Error desconocido"}
             </SoftTypography>
           </SoftBox>
         ) : (

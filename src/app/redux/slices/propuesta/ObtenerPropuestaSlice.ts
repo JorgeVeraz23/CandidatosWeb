@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getPartidoById } from 'app/redux/actions/PartidoActions/PartidoActions';
-import { EditPartidoEntity } from 'app/api/domain/entities/PartidoEntities/PartidoEntity';
+import { getPropuestaById } from 'app/redux/actions/PropuestaActions/PropuestaActions';
+import { EditarPropuestaEntity } from 'app/api/domain/entities/PropuestasEntities/PropuestaEntity';
 
 export interface initialStateSlice {
-  data: EditPartidoEntity | null;
+  data: EditarPropuestaEntity | null;
   loading: boolean;
   error: string | null;
 }
@@ -15,8 +15,8 @@ const initialState: initialStateSlice = {
   loading: false
 }
 
-export const getPartidoSlice = createSlice({
-  name: 'GetPartidoSlice',
+export const getPropuestaSlice = createSlice({
+  name: 'GetPropuestaSlice',
   initialState: initialState,
   reducers: {
     resetState: (state) => {
@@ -27,19 +27,19 @@ export const getPartidoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getPartidoById.pending, (state) => {
+      .addCase(getPropuestaById.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(getPartidoById.fulfilled, (state, action) => {
+      .addCase(getPropuestaById.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(getPartidoById.rejected, (state, action) => {
+      .addCase(getPropuestaById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || 'Something went wrong';
       });
   },
 })
 
-export default getPartidoSlice.reducer
+export default getPropuestaSlice.reducer

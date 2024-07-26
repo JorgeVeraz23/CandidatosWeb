@@ -23,14 +23,19 @@ import SoftInput from "components/SoftInput";
 import { showAlertAsync } from "layouts/pages/sweet-alerts/components/CustomAlert";
 import CustomInput from 'components/CustomInput';
 import CustomSelect from 'components/CustomSelect';
+import { keyValueCandidato } from 'app/redux/actions/KeyValueActions/KeyValueActions';
 
 
 export default function CrearPropuestaVista() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [optionCandidatoSelected, setOptionCandidatoSelected] = useState<{ value: string, label: string }>({
+    value: '', label: ''
+  });
+
 
     const createPropuestaState = useAppSelector(state => state.crearPropuesta);
-
+    const selectorCandidatoState = useAppSelector(state => state.keyValueCandidato);
 
   const [dynamicComponent, setDynamicComponent] = useState(buildText());
   const [createPropuestaData, setCreatePropuestaData] = useState<CrearPropuestaEntity>({
@@ -40,6 +45,9 @@ export default function CrearPropuestaVista() {
     idCandidato: 0,
   });
 
+  useEffect(() => {
+    init();
+  }, []);
 
   useEffect(() => {
     if (createPropuestaState.loading) {
@@ -58,6 +66,7 @@ export default function CrearPropuestaVista() {
         icon: 'success',
         html: 'Creación exitosa'
       });
+      setOptionCandidatoSelected({value: '', label: ''});
       setDynamicComponent(buildText);
       dispatch(createPropuestaSlice.actions.resetState());
       setCreatePropuestaData({
@@ -69,7 +78,20 @@ export default function CrearPropuestaVista() {
     }
   }, [createPropuestaState]);
 
+  const handleSetData = (value: string, field: keyof CrearPropuestaEntity) => {
+    setCreatePropuestaData((prevData) => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
 
+  const init = async () => {
+    await handleSelectorCandidatoDispatch();
+  }
+
+  const handleSelectorCandidatoDispatch = () => {
+    dispatch(keyValueCandidato())
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: keyof CrearPropuestaEntity) => {
     setCreatePropuestaData((prevData) => ({
@@ -77,6 +99,12 @@ export default function CrearPropuestaVista() {
       [field]: event.target.value
     }));
   };
+
+  const handleCandidatoSelectChange = (option: { value: string, label: string }) => {
+    setOptionCandidatoSelected(option);
+    handleSetData(option.value, 'idCandidato');
+  }
+
 
 
 
@@ -175,8 +203,24 @@ export default function CrearPropuestaVista() {
                               <CustomInput
                                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'descripción')}
                                 type="text"
-                                value={createPropuestaData.area}
+                                value={createPropuestaData.descripción}
                                 isRequired={true}
+                              />
+                            </SoftBox>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <SoftBox display="flex" flexDirection="column" height="100%">
+                              <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                <SoftTypography variant="subtitle1" fontWeight="bold">
+                                  Candidato
+                                </SoftTypography>
+                              </SoftBox>
+                              <CustomSelect
+                                onChange={(option: { value: string, label: string }) => handleCandidatoSelectChange(option)}
+                                value={optionCandidatoSelected}
+                                placeholder="Candidato"
+                                isRequired={true}
+                                options={selectorCandidatoState.data}
                               />
                             </SoftBox>
                           </Grid>

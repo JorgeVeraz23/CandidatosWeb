@@ -80,6 +80,9 @@ import PartidoList from 'layouts/partido/mostrar-partido';
 //Transparencia
 import CrearTransparenciaVista from 'layouts/transparencia/create-transparencia';
 import TransparenciaList from 'layouts/transparencia/mostrar-transparencia';
+import { components } from 'react-select';
+import CrearPropuestaVista from 'layouts/propuestas/crear-propuesta';
+import PropuestaList from 'layouts/propuestas/mostrar-propuesta';
 
 const routesV2 = [
   { type: "title", title: "Catalogos", key: "title-catalogos" },
@@ -125,6 +128,18 @@ const routesV2 = [
         route: "/catalogs/mostrar-transparencia",
         component: <TransparenciaList />
       },
+      {
+        name: "Crear Propuesta",
+        key: "crear-propuesta",
+        route: "/catalogs/crear-propuesta",
+        component: <CrearPropuestaVista />
+      },
+      {
+        name: "Mostrar Propuesta",
+        key: "mostrar-propuesta",
+        route: "/catalogs/mostrar-propuesta",
+        component: <PropuestaList />
+      }
 
 
     ],

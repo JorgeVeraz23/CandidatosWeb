@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { getAllClientes } from 'app/redux/actions/ClientsActions/ClientsActions';
-// import { ShowClientEntity } from 'app/api/domain/entities/ClientEntities/ClientEntity';
+
 
 import { KeyValueEntity } from 'app/api/domain/entities/KeyValueEntities/KeyValueEntity';
 import { keyValueCandidato } from 'app/redux/actions/KeyValueActions/KeyValueActions';
