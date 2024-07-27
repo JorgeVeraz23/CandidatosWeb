@@ -253,68 +253,62 @@ export default function CandidatoList() {
 
       <SoftBox mb={3}>
         <SoftBox display="flex" justifyContent="flex-end" mb={2}>
-          <SoftButton variant="contained" color="primary" onClick={handleBackButtonClick}>
-            Agregar Candidato
+          <SoftButton variant="outlined" color="info" onClick={handleBackButtonClick}>
+            Volver
           </SoftButton>
         </SoftBox>
-
         {MostrarCandidatoState.loading ? (
-          <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: 'calc(100vh - 154px)' }}>
+          <Box display="flex" justifyContent="center" mt={5}>
             <CircularProgress />
           </Box>
-        ) : MostrarCandidatoState.error ? (
-          <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: 'calc(100vh - 154px)' }}>
-            <Typography component="label">
-              {MostrarCandidatoState.error ?? "Error desconocido"}
-            </Typography>
-          </Box>
         ) : (
-          <Box my={1} sx={{ minHeight: 'calc(100vh - 260px)' }}>
-            <Grid container spacing={2}>
-              {MostrarCandidatoState.data?.map((candidato) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={candidato.idCandidato}>
-                  <Card>
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={candidato.fotoUrl}
-                      alt={`${candidato.nombreCandidato} Foto`}
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <CardContent>
-                      <Typography variant="h6" component="div">
-                        {candidato.nombreCandidato}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Edad: {candidato.edad}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Lugar de Nacimiento: {candidato.lugarDeNacimiento}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Partido: {candidato.nombrePartido}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Cargo: {candidato.cargo}
-                      </Typography>
-                      <SoftBox display="flex" justifyContent="flex-end" mt={2}>
-                        <Tooltip title="Editar">
-                          <Button variant="contained" color="primary" onClick={() => getPropuesta(candidato.idCandidato)} style={{ marginRight: 8 }}>
-                            <EditIcon />
-                          </Button>
-                        </Tooltip>
-                        <Tooltip title="Eliminar">
-                          <Button variant="contained" color="error" onClick={() => confirmDelete(candidato.idCandidato)}>
-                            <DeleteIcon />
-                          </Button>
-                        </Tooltip>
-                      </SoftBox>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
+          <Grid container spacing={3}>
+            {MostrarCandidatoState.data?.map((candidato: any) => (
+              <Grid item xs={12} md={6} lg={4} key={candidato.idCandidato}>
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={candidato.fotoUrl}
+                    alt={`${candidato.nombreCandidato} Foto`}
+                    style={{ objectFit: 'contain' }}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="div">
+                      {candidato.nombreCandidato}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Edad: {candidato.edad}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Lugar de Nacimiento: {candidato.lugarDeNacimiento}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Información de Contacto: {candidato.informacionDeContacto}
+                    </Typography>
+                    <SoftBox display="flex" justifyContent="flex-end" mt={2}>
+                      <Tooltip title="Eliminar">
+                        <Button
+                          color="error"
+                          onClick={() => confirmDelete(candidato.idCandidato)}
+                        >
+                          <DeleteIcon />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Editar">
+                        <Button
+                          color="warning"
+                          onClick={() => getPropuesta(candidato.idCandidato)}
+                        >
+                          <EditIcon />
+                        </Button>
+                      </Tooltip>
+                    </SoftBox>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         )}
       </SoftBox>
     </>
