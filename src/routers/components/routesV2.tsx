@@ -83,6 +83,7 @@ import TransparenciaList from 'layouts/transparencia/mostrar-transparencia';
 import { components } from 'react-select';
 import CrearPropuestaVista from 'layouts/propuestas/crear-propuesta';
 import PropuestaList from 'layouts/propuestas/mostrar-propuesta';
+import CrearCandidatoVista from 'layouts/candidato/create-candidato';
 
 const routesV2 = [
   { type: "title", title: "Catalogos", key: "title-catalogos" },
@@ -144,8 +145,6 @@ const routesV2 = [
 
     ],
   },
-
-
   { type: "title", title: "Candidatos", key: "title-candidatos" },
   {
     type: "collapse",
@@ -154,137 +153,20 @@ const routesV2 = [
     icon: <GroupsIcon />,
     collapse: [
       {
-        name: "Ingresos",
-        key: "ingresos",
-        route: "/inspecciones-realizadas/ingresos",
-        component: <InspectionForms />
+        name: "CrearCandidato",
+        key: "crear-candidato",
+        route: "/candidatos/crear-candidato",
+        component: <CrearCandidatoVista />
+      },
+      {
+        name: "MostrarCandidato",
+        key: "mostrar-candidato",
+        route: "/candidatos/mostrar-candidato",
+        component: <CrearCandidatoVista />
       },
     ],
   },
-  {
-    type: "collapse",
-    name: "Ordenes",
-    key: "ordenes",
-    icon: <ListAltIcon/>,
-    collapse: [
-      {
-        name: "Crear orden de inspección",
-        key: "crear-inspeccion",
-        route: "/ordenes/crear-inspeccion",
-        component: <CreateInspectionOrder />
-      },
-      {
-        name: "Ordenes de inspección",
-        key: "ordenes-inspeccion",
-        route: "/ordenes/ordenes-inspeccion",
-        component: <InspectionOrder />
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Planificación",
-    key: "planificacion",
-    icon: <CalendarTodayIcon />,
-    collapse: [
-      {
-        name: "Lista planificaciones",
-        key: "lista-planificaciones",
-        route: "/planificacion/lista-planificaciones",
-        component: <PlanningList />
-      },
-      {
-        name: "Crear planificación",
-        key: "crear-planificacion",
-        route: "/planificacion/crear-planificacion",
-        component: <CreatePlanning />
-      },
-    ],
-  },
-  { type: "title", title: "Gestión de Formularios", key: "gestion-de-formulario-de-inspeccion" },
-  {
-    type: "collapse",
-    name: "Formulario",
-    key: "formulario",
-    icon: <DescriptionIcon />,
-    collapse: [
-      
-      {
-        name: "Mostrar Formulario",
-        key: "mostrar-formulario",
-        route: "/formulario/mostrar-formulario",
-        component: <ShowForms />,
-      },
-      {
-        name: "Crear Formulario",
-        key: "crear-formulario",
-        route: "/formulario/crear-formulario",
-        component: <CreateForms />
-      },
-    ],
-  },
-
-  {
-    type: "collapse",
-    name: "Grupo de Preguntas",
-    key: "grupo-preguntas",
-    icon: <QuizIcon  />,
-    collapse: [
-      {
-        name: "Grupos de preguntas",
-        key: "grupo-preguntas",
-        route: "/grupo-preguntas/grupo-preguntas",
-        component: <GroupQuestions />
-      },
-      {
-        name: "Crear grupo de preguntas",
-        key: "crear-grupo-preguntas",
-        route: "/grupo-preguntas/crear-grupo-preguntas",
-        component: <CreateGroupQuestions />
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Pregunta",
-    key: "pregunta",
-    icon: <QuestionMarkIcon  />,
-    collapse: [
-      {
-        name: "Preguntas",
-        key: "preguntas",
-        route: "/pregunta/preguntas",
-        component: <Questions />
-      },
-      {
-        name: "Crear Preguntas",
-        key: "crear-preguntas",
-        route: "/pregunta/crear-preguntas",
-        component: <CreateQuestion />
-      },
-    ],
-  },
-  { type: "title", title: "Administrador", key: "administrador" },
-  {
-    type: "collapse",
-    name: "Administrar Cuentas",
-    key: "administrar-cuentas",
-    icon: <ManageAccountsIcon  />,
-    collapse: [
-      {
-        name: "Crear cuenta",
-        key: "crear-cuenta",
-        route: "/administrar-cuentas/crear-cuenta",
-        component: <SignUpIllustration />,
-      },
-    {
-        name: "Cambiar Clave",
-        key: "cambiar-clave",
-        route: "/administrar-cuentas/cambiar-clave",
-        component: <ResetIllustration />,
-      },
-    ],
-  },
+ 
 ];
 
 

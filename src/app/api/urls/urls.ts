@@ -104,6 +104,7 @@ export const CREATE_CARGO = `${CARGO_PREFIX}CrearCargo`;
 export const GET_CARGO = (idCargo: number) => `${CARGO_PREFIX}GetCargo?IdCargo=${idCargo}`;
 export const DELETE_CARGO = (idCargo: number) => `${CARGO_PREFIX}EliminarCargo?IdCargo=${idCargo}`;
 export const UPDATE_CARGO = `${CARGO_PREFIX}ActualizarCargo`;
+export const KEYVALUE_CARGO = `${CARGO_PREFIX}KeyValueCargo`;
 //#endregion
 
 //#region Candidato
@@ -123,6 +124,8 @@ export const CREATE_PARTIDO = `${PARTIDO_PREFIX}CrearPartidos`;
 export const GET_PARTIDO = (idPartido: number) => `${PARTIDO_PREFIX}GetPartidos?IdPartido=${idPartido}`;
 export const DELETE_PARTIDO = (idPartido: number) => `${PARTIDO_PREFIX}EliminarPartido?IdPartidos=${idPartido}`;
 export const UPDATE_PARTIDO = `${PARTIDO_PREFIX}ActualizarPartido`;
+export const KEYVALE_PARTIDO = `${PARTIDO_PREFIX}KeyValuePartido`;
+
 //#endregion
 
 //#region Transpariencia
@@ -132,6 +135,7 @@ export const CREATE_TRANSPARIENCIA = `${TRANSPARIENCIA_PREFIX}CrearTransparienci
 export const GET_TRANSPARIENCIA = (idTranspariencia: number) => `${TRANSPARIENCIA_PREFIX}GetTranspariencia?IdTranspariencia=${idTranspariencia}`;
 export const DELETE_TRANSPARIENCIA = (idTranspariencia: number) => `${TRANSPARIENCIA_PREFIX}EliminarTranspariencia?IdTranspariencia=${idTranspariencia}`;
 export const UPDATE_TRANSPARIENCIA = `${TRANSPARIENCIA_PREFIX}ActualizarTranspariencia`;
+export const KEYVALUE_TRANSPARENCIA = `${TRANSPARIENCIA_PREFIX}KeyValueTransparencia`;
 //#endregion
 
 //#region Propuesta

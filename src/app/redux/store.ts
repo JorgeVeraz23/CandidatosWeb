@@ -114,6 +114,9 @@ import EliminarCandidatoReducer from './slices/candidato/EliminarCandidatoSlice'
 
 //Selector Slice
 import KeyValueCandidatoReducer from './slices/KeyValue/KeyValueCandidatoSlice';
+import KeyValueCargoReducer from './slices/KeyValue/KeyValueCargoSlice';
+import KeyValuePartidoReducer from './slices/KeyValue/KeyValuePartidoSlice';
+import KeyValueTransparenciaReducer from './slices/KeyValue/KeyValueTransparenciaSlice';
 
 export const store = configureStore({
   reducer: {
@@ -125,6 +128,9 @@ export const store = configureStore({
     mostrarCargo: MostrarCargoReducer,
     //SELECTOR
     keyValueCandidato: KeyValueCandidatoReducer,
+    keyValueCargo: KeyValueCargoReducer,
+    keyValueTransparencia: KeyValueTransparenciaReducer,
+    keyValuePartido: KeyValuePartidoReducer,
     //PARTIDO
     crearPartido: CrearPartidoReducer,
     mostrarPartido: MostrarPartidoReducer,
