@@ -85,6 +85,7 @@ import CrearPropuestaVista from 'layouts/propuestas/crear-propuesta';
 import PropuestaList from 'layouts/propuestas/mostrar-propuesta';
 import CrearCandidatoVista from 'layouts/candidato/create-candidato';
 import CandidatoList from 'layouts/candidato/mostrar-candidato';
+import CandidatoAdministradorList from 'layouts/candidato/mostrar-candidato-administrador';
 
 const routesV2 = [
   { type: "title", title: "Catalogos", key: "title-catalogos" },
@@ -141,7 +142,9 @@ const routesV2 = [
         key: "mostrar-propuesta",
         route: "/catalogs/mostrar-propuesta",
         component: <PropuestaList />
-      }
+      },
+     
+
 
 
     ],
@@ -154,16 +157,22 @@ const routesV2 = [
     icon: <GroupsIcon />,
     collapse: [
       {
-        name: "CrearCandidato",
+        name: "Crear Candidato",
         key: "crear-candidato",
         route: "/candidatos/crear-candidato",
         component: <CrearCandidatoVista />
       },
       {
-        name: "MostrarCandidato",
+        name: "Mostrar Candidato",
         key: "mostrar-candidato",
         route: "/candidatos/mostrar-candidato",
         component: <CandidatoList />
+      },
+      {
+        name: "Mostrar Candidato Administrador",
+        key: "mostrar-candidato-administrador",
+        route: "/candidatos/mostrar-candidato-administrador",
+        component: <CandidatoAdministradorList />
       },
     ],
   },
