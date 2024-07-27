@@ -84,6 +84,7 @@ import { components } from 'react-select';
 import CrearPropuestaVista from 'layouts/propuestas/crear-propuesta';
 import PropuestaList from 'layouts/propuestas/mostrar-propuesta';
 import CrearCandidatoVista from 'layouts/candidato/create-candidato';
+import CandidatoList from 'layouts/candidato/mostrar-candidato';
 
 const routesV2 = [
   { type: "title", title: "Catalogos", key: "title-catalogos" },
@@ -162,7 +163,7 @@ const routesV2 = [
         name: "MostrarCandidato",
         key: "mostrar-candidato",
         route: "/candidatos/mostrar-candidato",
-        component: <CrearCandidatoVista />
+        component: <CandidatoList />
       },
     ],
   },

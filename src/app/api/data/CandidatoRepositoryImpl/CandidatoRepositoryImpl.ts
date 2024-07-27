@@ -33,9 +33,8 @@ export default class CandidatoRepositoryImpl implements CandidatoRepository {
           fotoUrl: item.fotoUrl,
           lugarDeNacimiento: item.lugarDeNacimiento,
           informacionDeContacto: item.informacionDeContacto,
-          idPartido: item.idPartido,
-          idCargo: item.idCargo,
-          idTranspariencia: item.idTranspariencia,
+          nombrePartido: item.nombrePartido,
+          cargo: item.cargo,
         });
       }
       return result;
@@ -59,7 +58,6 @@ export default class CandidatoRepositoryImpl implements CandidatoRepository {
         informacionDeContacto: response.data.informacionDeContacto,
         idPartido: response.data.idPartido,
         idCargo: response.data.idCargo,
-        idTranspariencia: response.data.idTranspariencia,
       }
       return result;
     }).catch(error => {

@@ -131,7 +131,7 @@ export default function CrearPropuestaVista() {
   }
 
   const createRegister = () => {
-    if (createPropuestaData.titulo == '' || createPropuestaData.descripción == '' || createPropuestaData.area == '' || createPropuestaData.idCandidato == 0) {
+    if (createPropuestaData.titulo == '' || createPropuestaData.descripción == '' || createPropuestaData.area == '') {
       showAlertAsync({
         title: 'Error',
         icon: 'error',
@@ -219,7 +219,7 @@ export default function CrearPropuestaVista() {
                                 onChange={(option: { value: string, label: string }) => handleCandidatoSelectChange(option)}
                                 value={optionCandidatoSelected}
                                 placeholder="Candidato"
-                                isRequired={true}
+                                isRequired={false}
                                 options={selectorCandidatoState.data}
                               />
                             </SoftBox>

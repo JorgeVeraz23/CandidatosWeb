@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import TextField from '@mui/material/TextField';
 import { styled, useTheme } from '@mui/system';
 import { Box, Typography } from '@mui/material';
@@ -56,33 +56,18 @@ const CustomInput: React.FC<CustomInputProps> = ({
     accept = ""
 }) => {
     const theme = useTheme();
-    const [inputValue, setInputValue] = useState<string | number>(value);
-
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        let newValue: string | number = event.target.value;
-
-        if (type === 'number') {
-            newValue = event.target.value === '' ? '' : Number(event.target.value);
-        }
-
-        if (onChange !== undefined) {
-            onChange(event);
-        }
-
-        setInputValue(newValue);
-    }
 
     return (
         <Box>
             <StyledTextField
                 disabled={isDisabled}
                 type={type}
-                value={type !== "file" ? inputValue : ''}
-                onChange={(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => handleInputChange(event)}
+                value={type !== "file" ? value : ''}
+                onChange={onChange}
                 placeholder={placeholder}
                 theme={theme}
                 isrequired={isRequired.toString()}
-                valueofcontrol={inputValue}
+                valueofcontrol={value}
                 inputProps={{ accept: accept }}
                 InputLabelProps={{ shrink: true }}
             />

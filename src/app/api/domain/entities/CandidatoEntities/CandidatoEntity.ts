@@ -7,7 +7,7 @@ export type CreateCandidatoEntity = {
     informacionDeContacto: string,
     idPartido: number,
     idCargo: number,
-    idTranspariencia: number,
+
 }
 
 
@@ -22,7 +22,6 @@ export type MostrarCandidatoEntity = {
     fotoUrl: string,
     lugarDeNacimiento: string,
     informacionDeContacto: string,
-    idPartido: number,
-    idCargo: number,
-    idTranspariencia: number,
+    nombrePartido: string,
+    cargo: string,
 }
