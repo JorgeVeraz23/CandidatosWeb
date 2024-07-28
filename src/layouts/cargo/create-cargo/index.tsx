@@ -27,7 +27,7 @@ import SoftInput from "components/SoftInput";
 import { showAlertAsync } from "layouts/pages/sweet-alerts/components/CustomAlert";
 import CustomInput from 'components/CustomInput';
 import CustomSelect from 'components/CustomSelect';
-
+import WorkIcon from '@mui/icons-material/Work';
 
 export default function CrearCargoVista() {
   const navigate = useNavigate();
@@ -112,7 +112,7 @@ export default function CrearCargoVista() {
   };
 
   const handleBackButtonClick = () => {
-    navigate('/app/planificacion/lista-planificaciones');
+    navigate('/app/cargo/mostrar-cargo');
   }
 
   return (
@@ -121,6 +121,7 @@ export default function CrearCargoVista() {
                 <SoftBox py={1} display="flex" justifyContent="flex-end">
                   <SoftButton onClick={handleBackButtonClick} color="info" >
                     Ver Cargos
+                    <WorkIcon style={{ marginLeft: '8px' }}/>
                   </SoftButton>
                 </SoftBox>
                 <Grid container display="flex" justifyContent="center">

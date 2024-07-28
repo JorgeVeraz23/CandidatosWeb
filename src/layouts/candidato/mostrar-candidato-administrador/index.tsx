@@ -48,7 +48,7 @@ import { getAllPartido } from "app/redux/actions/PartidoActions/PartidoActions";
 
 
 
-
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 
 export default function CandidatoAdministradorList() {
   const dispatch = useAppDispatch();
@@ -427,7 +427,7 @@ export default function CandidatoAdministradorList() {
   }
 
   const handleBackButtonClick = () => {
-    navigate('/app/planificacion/crear-planificacion');
+    navigate('/app/candidatos/crear-candidato');
   }
 
   return (
@@ -437,7 +437,8 @@ export default function CandidatoAdministradorList() {
       <SoftBox mb={3}>
         <SoftBox display="flex" justifyContent="flex-end" mb={2}>
           <SoftButton onClick={handleBackButtonClick} color="primary">
-            Crear Transparencia
+            Crear Candidato
+            <AccessibilityIcon style={{ marginLeft: '8px' }} />
           </SoftButton>
         </SoftBox>
         {MostrarCandidatoState.loading ? (

@@ -24,7 +24,7 @@ import { showAlertAsync } from "layouts/pages/sweet-alerts/components/CustomAler
 import CustomInput from 'components/CustomInput';
 import CustomSelect from 'components/CustomSelect';
 import { keyValueCandidato } from 'app/redux/actions/KeyValueActions/KeyValueActions';
-
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 export default function CrearPropuestaVista() {
   const navigate = useNavigate();
@@ -143,7 +143,7 @@ export default function CrearPropuestaVista() {
   };
 
   const handleBackButtonClick = () => {
-    navigate('/app/planificacion/lista-planificaciones');
+    navigate('/app/catalogs/mostrar-propuesta');
   }
 
   return (
@@ -152,13 +152,14 @@ export default function CrearPropuestaVista() {
                 <SoftBox py={1} display="flex" justifyContent="flex-end">
                   <SoftButton onClick={handleBackButtonClick} color="info" >
                     Ver Propuesta
+                    <EmojiEmotionsIcon style={{ marginLeft: '8px' }} />
                   </SoftButton>
                 </SoftBox>
                 <Grid container display="flex" justifyContent="center">
                   <Grid item xs={12} md={7}>
                     <Card sx={{ overflow: "visible", paddingBottom: '20px' }}>
                       <CardHeader variant="h5" fontWeight="bold" gutterBottom
-                        title="Nuevo Partido"
+                        title="Nueva Propuesta"
                       />
                       <Divider sx={{ borderColor: 'rgba(0, 0, 0, 0.87)', borderWidth: '2px', width: '100%' }} />
                       <CardContent sx={{ padding: '0 16px' }}>

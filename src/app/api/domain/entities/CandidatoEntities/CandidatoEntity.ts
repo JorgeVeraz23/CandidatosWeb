@@ -29,7 +29,7 @@ export type MostrarCandidatoEntity = {
 export type PropuestaEntity = {
     idPropuesta: number,
     titulo: string,
-    descripcion: string,
+    descripción: string,
     area: string,
     idCandidato: number | null,
 }

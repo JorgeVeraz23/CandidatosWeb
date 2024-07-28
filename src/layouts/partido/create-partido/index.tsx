@@ -9,7 +9,7 @@ import { createPartido } from 'app/redux/actions/PartidoActions/PartidoActions';
 //Slices
 import { createPartidoSlice } from 'app/redux/slices/partido/CrearPartidoSlice';
 
-
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
 
 // @mui material components
 import { Card, CardHeader, CardContent, CardActions, Grid, CircularProgress, Typography, Divider } from "@mui/material";
@@ -119,6 +119,7 @@ export default function CrearPartidoVista() {
                 <SoftBox py={1} display="flex" justifyContent="flex-end">
                   <SoftButton onClick={handleBackButtonClick} color="info" >
                     Ver Partidos
+                    <GroupWorkIcon style={{ marginLeft: '8px' }} />
                   </SoftButton>
                 </SoftBox>
                 <Grid container display="flex" justifyContent="center">

@@ -30,7 +30,7 @@ import { showAlertAsync } from "layouts/pages/sweet-alerts/components/CustomAler
 import { CircularProgress, Tooltip } from "@mui/material";
 
 
-
+import WorkIcon from '@mui/icons-material/Work';
 //Entities
 import { MostrarCargoEntity, EditCargoEntity } from "app/api/domain/entities/CargoEntities/CargoEntity";
 //Actions
@@ -265,7 +265,6 @@ export default function CargoList() {
                   </SoftBox>
                   <SoftInput
                     multiline
-                    rows={5}
                     value={editCargoData.nombre}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'nombre')}
                   />
@@ -287,7 +286,7 @@ export default function CargoList() {
   }
 
   const handleBackButtonClick = () => {
-    navigate('/app/planificacion/crear-planificacion');
+    navigate('/app/catalogs/crear-cargo');
   }
 
   return (
@@ -298,6 +297,7 @@ export default function CargoList() {
         <SoftBox display="flex" justifyContent="flex-end" mb={2}>
           <SoftButton onClick={handleBackButtonClick} color="primary">
             Crear Cargo
+            <WorkIcon style={{ marginLeft: '8px' }}/>
           </SoftButton>
         </SoftBox>
         {mostrarCargoState.loading ? (

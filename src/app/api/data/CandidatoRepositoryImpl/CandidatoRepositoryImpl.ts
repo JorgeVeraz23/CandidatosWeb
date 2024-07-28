@@ -83,7 +83,7 @@ export default class CandidatoRepositoryImpl implements CandidatoRepository {
         propuestas: response.data.propuestas.map((p: any) => ({
           idPropuesta: p.idPropuesta,
           titulo: p.titulo,
-          descripcion: p.descripcion,
+          descripción: p.descripción,
           area: p.area,
           idCandidato: p.idCandidato,
       })),

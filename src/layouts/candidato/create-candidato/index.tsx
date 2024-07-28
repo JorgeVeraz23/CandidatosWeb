@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "app/redux/hooks";
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
 //Entity
 import { CreateCandidatoEntity } from 'app/api/domain/entities/CandidatoEntities/CandidatoEntity';
 //Actions
@@ -11,7 +12,7 @@ import { createCandidatoSlice } from 'app/redux/slices/candidato/CreateCandidato
 
 // @mui material components
 import { Card, CardHeader, CardContent, CardActions, Grid, CircularProgress, Typography, Divider } from "@mui/material";
-
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -177,7 +178,7 @@ export default function CrearCandidatoVista() {
   };
 
   const handleBackButtonClick = () => {
-    navigate('/app/planificacion/lista-planificaciones');
+    navigate('/app/candidatos/mostrar-candidato-administrador');
   }
 
   return (
@@ -186,6 +187,7 @@ export default function CrearCandidatoVista() {
         <SoftBox py={1} display="flex" justifyContent="flex-end">
           <SoftButton onClick={handleBackButtonClick} color="info">
             Ver Candidatos
+            <AccessibilityIcon style={{ marginLeft: '8px' }} />
           </SoftButton>
         </SoftBox>
         <Grid container display="flex" justifyContent="center">

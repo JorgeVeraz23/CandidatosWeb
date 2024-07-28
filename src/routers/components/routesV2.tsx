@@ -120,18 +120,6 @@ const routesV2 = [
         component: <PartidoList />
       },
       {
-        name: "Crear Transparencia",
-        key: "crear-transparencia",
-        route: "/catalogs/crear-transparencia",
-        component: <CrearTransparenciaVista />
-      },
-      {
-        name: "Mostrar Transparencia",
-        key: "mostrar-transparencia",
-        route: "/catalogs/mostrar-transparencia",
-        component: <TransparenciaList />
-      },
-      {
         name: "Crear Propuesta",
         key: "crear-propuesta",
         route: "/catalogs/crear-propuesta",

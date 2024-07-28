@@ -44,6 +44,7 @@ import { getPropuestaSlice } from "app/redux/slices/propuesta/ObtenerPropuestaSl
 
 import CustomSelect from "components/CustomSelect";
 
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 
 
@@ -374,7 +375,7 @@ export default function PropuestaList() {
   }
 
   const handleBackButtonClick = () => {
-    navigate('/app/planificacion/crear-planificacion');
+    navigate('/app/catalogs/crear-propuesta');
   }
 
   return (
@@ -385,6 +386,7 @@ export default function PropuestaList() {
         <SoftBox display="flex" justifyContent="flex-end" mb={2}>
           <SoftButton onClick={handleBackButtonClick} color="primary">
             Crear Transparencia
+            <EmojiEmotionsIcon style={{ marginLeft: '8px' }} />
           </SoftButton>
         </SoftBox>
         {mostrarPropuestaState.loading ? (

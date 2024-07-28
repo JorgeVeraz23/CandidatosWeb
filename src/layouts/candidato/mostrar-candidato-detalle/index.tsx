@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "app/redux/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CircularProgress, Grid, Card, Box, Typography, Button, Collapse, Avatar } from "@mui/material";
+import { CircularProgress, Grid, Card, Box, Typography, Button, Collapse, Avatar, CardContent } from "@mui/material";
 import SoftBox from "components/SoftBox";
 import SoftButton from "components/SoftButton";
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import DescriptionIcon from '@mui/icons-material/Description';
 import { styled } from '@mui/system';
-
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import { getCandidatoConDetalleById } from "app/redux/actions/CandidatoActions/CandidatoActions";
 import { EditCandidatoConDetalleEntity } from "app/api/domain/entities/CandidatoEntities/CandidatoEntity";
 
@@ -33,6 +34,13 @@ const CandidateImage = styled(Avatar)({
   borderRadius: '50%',
   boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
   marginBottom: 16,
+});
+
+const ProposalCard = styled(Card)({
+  padding: 16,
+  borderRadius: 12,
+  backgroundColor: '#ffffff',
+  boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
 });
 
 const MostrarCandidatoConDetalle: React.FC<MostrarTaskDetailProps> = (props) => {
@@ -90,7 +98,7 @@ const MostrarCandidatoConDetalle: React.FC<MostrarTaskDetailProps> = (props) => 
         <SoftBox my={1} sx={{ minHeight: "calc(100vh - 260px)" }}>
           <SoftBox display="flex" justifyContent="flex-end" mb={2}>
             <SoftButton onClick={handleBackButtonClick} color="primary">
-              <WorkspacesIcon />
+            <AccessibilityIcon style={{ marginLeft: '8px' }} />
               Ver Candidatos
             </SoftButton>
           </SoftBox>
@@ -102,19 +110,19 @@ const MostrarCandidatoConDetalle: React.FC<MostrarTaskDetailProps> = (props) => 
                   {candidatoData.nombreCandidato}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  {candidatoData.cargo}
+                 <b>Edad:</b>  {candidatoData.edad}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  Edad: {candidatoData.edad}
+                 <b>Lugar de Nacimiento:</b>  {candidatoData.lugarDeNacimiento}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  Lugar de Nacimiento: {candidatoData.lugarDeNacimiento}
+                  <b>Información de Contacto:</b> {candidatoData.informacionDeContacto}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  Información de Contacto: {candidatoData.informacionDeContacto}
+                 <b>Partido:</b>  {candidatoData.nombrePartido}
                 </Typography>
-                <Typography variant="body1" gutterBottom>
-                  Partido: {candidatoData.nombrePartido}
+                <Typography>
+                    <b>Cargo al que aspira:</b> {candidatoData.cargo}
                 </Typography>
                 <Button
                   onClick={handleExpandClick}
@@ -123,19 +131,30 @@ const MostrarCandidatoConDetalle: React.FC<MostrarTaskDetailProps> = (props) => 
                   endIcon={expanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                   size="small"
                 >
-                  {expanded ? 'Ocultar Detalles' : 'Ver Detalles'}
+                  {expanded ? 'Ocultar Propuestas' : 'Ver Propuestas'}
                 </Button>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <Box sx={{ mt: 2, width: '100%' }}>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant="h2" gutterBottom>
                       Propuestas
                     </Typography>
-                    {candidatoData.propuestas.map((propuesta, index) => (
-                      <Box key={index} sx={{ mb: 2 }}>
-                        <Typography variant="body1"><strong>Título:</strong> {propuesta.titulo}</Typography>
-                        <Typography variant="body1"><strong>Descripción:</strong> {propuesta.descripcion}</Typography>
-                      </Box>
-                    ))}
+                    <Grid container spacing={2}>
+                      {candidatoData.propuestas.map((propuesta, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                          <ProposalCard>
+                            <CardContent>
+                              <Typography variant="h6" gutterBottom>
+                                <DescriptionIcon style={{ verticalAlign: 'middle', marginRight: 8 }} />
+                                {propuesta.titulo}
+                              </Typography>
+                              <Typography variant="body1">
+                                {propuesta.descripción}
+                              </Typography>
+                            </CardContent>
+                          </ProposalCard>
+                        </Grid>
+                      ))}
+                    </Grid>
                   </Box>
                 </Collapse>
               </>

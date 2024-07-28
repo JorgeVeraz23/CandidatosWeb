@@ -29,7 +29,7 @@ import DataTable from "examples/Tables/DataTable";
 import { showAlertAsync } from "layouts/pages/sweet-alerts/components/CustomAlert";
 import { CircularProgress, Tooltip } from "@mui/material";
 
-
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
 
 //Entities
 import { MostrarPartidoEntity, EditPartidoEntity } from "app/api/domain/entities/PartidoEntities/PartidoEntity";
@@ -266,8 +266,6 @@ export default function PartidoList() {
                     </SoftTypography>
                   </SoftBox>
                   <SoftInput
-                    multiline
-                    rows={5}
                     value={editPartidoData.nombrePartido}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'nombrePartido')}
                   />
@@ -299,7 +297,8 @@ export default function PartidoList() {
       <SoftBox mb={3}>
         <SoftBox display="flex" justifyContent="flex-end" mb={2}>
           <SoftButton onClick={handleBackButtonClick} color="primary">
-            Crear Cargo
+            Crear Partido
+            <GroupWorkIcon style={{ marginLeft: '8px' }} />
           </SoftButton>
         </SoftBox>
         {mostrarPartidoState.loading ? (
