@@ -8,8 +8,10 @@ export const PrivateRoute = ({ children }: PrivateRouteProps) => {
     const lastPath = pathname + search;
     localStorage.setItem('lastPath', lastPath );
     return (logged)
-        ? children
-        : <Navigate to="/auth/iniciar-sesion/vista" replace/>
+        ?  children : children
+            // <Navigate to="candidatos/mostrar-candidato" replace/> : children
+        ///app/candidatos/mostrar-candidato
+        // : <Navigate to="/auth/iniciar-sesion/vista" replace/>
 }
 
 interface PrivateRouteProps{

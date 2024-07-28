@@ -4,8 +4,8 @@ import { CrearPropuestaEntity, EditarPropuestaEntity, MostrarPropuestaEntity } f
 
 export default interface PropuestaRepository {
     getAllPropuesta(): Promise<MostrarPropuestaEntity[]>;
-    getPropuestaById(idPartido: number): Promise<EditarPropuestaEntity>;
+    getPropuestaById(idPropuesta: number): Promise<EditarPropuestaEntity>;
     createPropuesta(data: CrearPropuestaEntity): Promise<boolean>;
-    deletePropuesta(idPartido: number): Promise<boolean>;
+    deletePropuesta(idPropuesta: number): Promise<boolean>;
     editPropuesta(data: EditarPropuestaEntity): Promise<boolean>;
 }

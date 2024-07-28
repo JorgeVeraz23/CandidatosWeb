@@ -1,27 +1,13 @@
-import  { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import Switch from "@mui/material/Switch";
-import CircularProgress from "@mui/material/CircularProgress"; // Importa CircularProgress
-import SoftBox from "components/SoftBox";
-import SoftTypography from "components/SoftTypography";
-import SoftInput from "components/SoftInput";
-import SoftButton from "components/SoftButton";
-import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
-import SoftAlert from "components/SoftAlert";
-import IconButton from "@mui/material/IconButton"; // Agrega la importación de IconButton
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"; // Agrega la importación de VisibilityOffIcon
-import VisibilityIcon from "@mui/icons-material/Visibility"; // Agrega la importación de VisibilityIcon
-import { URL_API } from 'app/api/urls/urls'
-import logobanacheck from "assets/images/illustrations/logo-banacheck.png";
-import logobanacheckwhite from "assets/images/illustrations/logobanacheckwhite.png";
+import { Grid, Header, Image, Form, Segment, Button, Message, Icon } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
+import { URL_API } from 'app/api/urls/urls';
 import ElectroAnalyzer from "assets/images/illustrations/electroAnalyzer.png";
+import { useDispatch } from "react-redux";
 import { loggingUserSlice } from "app/redux/slices/ui/uiSlices";
 import { UserEntity } from "app/api/domain/entities/AuthEntities/UserEntity";
-import { useAppSelector } from "app/redux/hooks";
-import { useDispatch } from "react-redux";
-import { SignInEntity } from "app/api/domain/entities/SignInEntities/SigInEntity";
 
 function Illustration() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -31,11 +17,13 @@ function Illustration() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isRolName, setIsRolName] = useState<UserEntity>();
-  const [showPassword, setShowPassword] = useState(false); // Agrega el estado para mostrar u ocultar la contraseña
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  useEffect(() => {
+    // Código en el useEffect que no se debe eliminar
+  }, []);
 
   const handleSignIn = async () => {
     setIsLoading(true);
@@ -48,10 +36,10 @@ function Illustration() {
         Password: password,
       };
       const response = await axios.post(url, requestData);
-      const token: string = response.data.token;
-      const role: string = response.data.role;
+      const token = response.data.token;
+      const role = response.data.role;
       localStorage.setItem("Rol", role);
-      const userName: string = response.data.userName;
+      const userName = response.data.userName;
       localStorage.setItem("User", userName);
       const data = {
         token: token,
@@ -63,7 +51,8 @@ function Illustration() {
       dispatch(loggingUserSlice.actions.loggingUser(data));
       setShowSuccessAlert(true);
       setIsLoggedIn(true);
-    } catch (error: any) {
+      navigate("inicio/bienvenido");
+    } catch (error) {
       console.error("Error al iniciar sesión:", error);
       setShowErrorAlert(true);
     } finally {
@@ -71,86 +60,63 @@ function Illustration() {
     }
   };
 
-  // Define la función para cambiar la visibilidad de la contraseña
+  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Define la función para validar la contraseña
-  const validatePassword = (value: string) => {
-    // Aquí puedes agregar la lógica de validación de la contraseña si es necesario
-    setPassword(value);
-  };
-
   return (
-    <IllustrationLayout
-      title="Iniciar Sesión"
-      color="dark"
-      description="Ingresa tu correo electrónico y contraseña para iniciar sesión."
-      illustration={{
-        image: ElectroAnalyzer,
-        title: "",
-        description: "",
-      }}
-    >
-      <SoftBox component="form" role="form">
-        <SoftBox mb={2}>
-          <SoftInput
-            type="email"
-            placeholder="Email"
-            size="large"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </SoftBox>
-        <SoftBox mb={2}>
-          <SoftInput
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            size="large"
-            onChange={(e) => setPassword(e.target.value)}
-            endAdornment={
-              <IconButton
-                onClick={handleTogglePasswordVisibility}
-                sx={{
-                  position: "absolute",
-                  right: "8px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              >
-                {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-              </IconButton>
-            }
-          />
-        </SoftBox>
-        <SoftBox mt={4} mb={1}>
-          <SoftButton variant="gradient" color="primary" size="large" fullWidth onClick={handleSignIn}>
-            {isLoading ? <CircularProgress size={24} color="inherit" /> : "Iniciar Sesión"} {/* Mostrar indicador de carga si isLoading es true */}
-          </SoftButton>
-        </SoftBox>
-        <SoftBox mt={3} textAlign="center">
-          <SoftTypography variant="button" color="text" fontWeight="regular">
-            ¿Olvidaste tu contraseña?{" "}
-            <SoftTypography
-              component={Link}
-              to="/auth/cuenta/recuperar-contraseña"
-              variant="button"
-              color="info"
-              fontWeight="medium"
-              textGradient
-            >
-              Recuperar Contraseña
-            </SoftTypography>
-          </SoftTypography>
-        </SoftBox>
-
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h2" color="blue" textAlign="center">
+          <Image src={ElectroAnalyzer} /> Inicia sesión en Electro Analyzer
+        </Header>
+        <Form size="large" onSubmit={handleSignIn}>
+          <Segment stacked>
+            <Form.Input
+              fluid
+              icon="user"
+              iconPosition="left"
+              placeholder="Correo electrónico"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Form.Input
+              fluid
+              iconPosition="left"
+              placeholder="Contraseña"
+              type={showPassword ? "text" : "password"}
+              onChange={(e) => setPassword(e.target.value)}
+              icon={
+                <Icon
+                  name={showPassword ? "eye slash" : "eye"}
+                  link
+                  onClick={handleTogglePasswordVisibility}
+                />
+              }
+            />
+            <Form.Checkbox
+              label="Recuérdame"
+              checked={rememberMe}
+              onChange={handleSetRememberMe}
+            />
+            <Button color="blue" fluid size="large" loading={isLoading} disabled={isLoading}>
+              Iniciar sesión
+            </Button>
+          </Segment>
+        </Form>
         {showErrorAlert && (
-          <SoftAlert color="error" dismissible onClose={() => setShowErrorAlert(false)}>
-            Error al iniciar sesión. Por favor, verifica tu correo electrónico y contraseña.
-          </SoftAlert>
+          <Message negative>
+            <Message.Header>Error al iniciar sesión</Message.Header>
+            <p>Por favor, verifica tu correo electrónico y contraseña.</p>
+          </Message>
         )}
-      </SoftBox>
-    </IllustrationLayout>
+        <Message>
+          ¿Olvidaste tu contraseña? <Link to="/auth/cuenta/recuperar-contraseña">Recuperar Contraseña</Link>
+        </Message>
+      </Grid.Column>
+    </Grid>
   );
 }
 

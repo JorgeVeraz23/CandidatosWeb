@@ -1,11 +1,11 @@
 import axiosClient from '../../httpClient/axiosClient';
 import { AxiosException } from 'app/errors/exceptions';
 //URL
-import { GETALL_CANDIDATO, CREATE_CANDIDATO, UPDATE_CANDIDATO, GET_CANDIDATO, DELETE_CANDIDATO } from 'app/api/urls/urls';
+import { GETALL_CANDIDATO, CREATE_CANDIDATO, UPDATE_CANDIDATO, GET_CANDIDATO, DELETE_CANDIDATO, GETCANDIDATO_CONDETALES } from 'app/api/urls/urls';
 //Repository
 import CandidatoRepository from 'app/api/domain/repositories/CandidatoRepository/CandidatoRepository';
 //Entity
-import { CreateCandidatoEntity,EditCandidatoEntity,MostrarCandidatoEntity } from 'app/api/domain/entities/CandidatoEntities/CandidatoEntity';
+import { CreateCandidatoEntity,EditCandidatoConDetalleEntity,EditCandidatoEntity,MostrarCandidatoConDetalleEntity,MostrarCandidatoEntity } from 'app/api/domain/entities/CandidatoEntities/CandidatoEntity';
 
 
 
@@ -59,6 +59,37 @@ export default class CandidatoRepositoryImpl implements CandidatoRepository {
         idPartido: response.data.idPartido,
         idCargo: response.data.idCargo,
       }
+      return result;
+    }).catch(error => {
+      throw new Error(AxiosException(error));
+    });
+  }
+
+  async getCandidatoConDetalleById(idCandidato: number): Promise<EditCandidatoConDetalleEntity> {
+    return await axiosClient.get(GETCANDIDATO_CONDETALES(idCandidato), {
+      headers: {
+        'Authorization': `Bearer ${this.token}`,
+      },
+    }).then(async (response) => {
+      const result : EditCandidatoConDetalleEntity = {
+        idCandidato: response.data.idCandidato,
+        nombreCandidato: response.data.nombreCandidato,
+        edad: response.data.edad,
+        fotoUrl: response.data.fotoUrl,
+        lugarDeNacimiento: response.data.lugarDeNacimiento,
+        informacionDeContacto: response.data.informacionDeContacto,
+        nombrePartido: response.data.nombrePartido,
+        cargo: response.data.cargo,
+        propuestas: response.data.propuestas.map((p: any) => ({
+          idPropuesta: p.idPropuesta,
+          titulo: p.titulo,
+          descripcion: p.descripcion,
+          area: p.area,
+          idCandidato: p.idCandidato,
+      })),
+      }
+
+      console.log("aqui", JSON.stringify(result, null, 3))
       return result;
     }).catch(error => {
       throw new Error(AxiosException(error));

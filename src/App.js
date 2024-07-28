@@ -98,7 +98,7 @@ export default function App() {
         const token = localStorage.getItem('token');
 
         // Si hay token y la ruta es la de sign-in, redirigir a la ruta de dashboards/default
-        if (token && route.route === "app/iniciar-sesion/vista") {
+        if (token && route.route === "app/inicio/bienvenido") {
           return <Route exact path={route.route} element={<Navigate to="/app/inicio/bienvenida" replace />} key={route.key} />;
         }
 
@@ -206,7 +206,7 @@ export default function App() {
         {getRoutes(login)}
        
 
-        <Route path="" element={<Navigate to="/iniciar-sesion/vista" />} />
+        <Route path="" element={<Navigate to="/inicio/bienvenido" />} />
         {<Route path="*" element={<Navigate to="/error/404" />} />}
         {getRoutes(routes)}
       </Routes>

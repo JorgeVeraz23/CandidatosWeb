@@ -111,6 +111,7 @@ import CreateCandidatoReducer from './slices/candidato/CreateCandidatoSlice';
 import ActualizarCandidatoReducer from './slices/candidato/ActualizarCandidatoSlice';
 import ObtenerCandidatoReducer from './slices/candidato/ObtenerCandidatoSlice';
 import EliminarCandidatoReducer from './slices/candidato/EliminarCandidatoSlice';
+import ObtenerCandidatoConDetalleReducer from './slices/candidato/ObtenerCandidatoConDetalleSlice';
 
 //Selector Slice
 import KeyValueCandidatoReducer from './slices/KeyValue/KeyValueCandidatoSlice';
@@ -155,6 +156,7 @@ export const store = configureStore({
     actualizarCandidato: ActualizarCandidatoReducer,
     EliminarCandidato: EliminarCandidatoReducer,
     obtenerCandidato: ObtenerCandidatoReducer,
+    obtenerCandidatoConDetalle: ObtenerCandidatoConDetalleReducer,
     // CATALOGUE
     catalogueInspectionOrder: CatalogueInspectionOrderReducer,
     catalogueClient: CatalogueClientReducer,

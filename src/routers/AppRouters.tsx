@@ -23,7 +23,7 @@ const AppRouter = () => {
                     </Routes>
                 </PublicRoutes>
             } />
-            <Route path="*" element={<Navigate to="auth/iniciar-sesion/vista" replace />} />
+            <Route path="*" element={<Navigate to="app/inicio/bienvenido" replace />} />
             {/* <Route path="*" element={<Navigate to="/app/error/404" />} /> */}
             
             {/* <Route path="" element={<Navigate to="/iniciar-sesion/vista" replace />} /> */}

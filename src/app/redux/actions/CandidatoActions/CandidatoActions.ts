@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 
 
-import { CreateCandidatoEntity, EditCandidatoEntity,MostrarCandidatoEntity } from 'app/api/domain/entities/CandidatoEntities/CandidatoEntity';
+import { CreateCandidatoEntity, EditCandidatoConDetalleEntity, EditCandidatoEntity,MostrarCandidatoConDetalleEntity,MostrarCandidatoEntity } from 'app/api/domain/entities/CandidatoEntities/CandidatoEntity';
 import CandidatoRepositoryImpl from 'app/api/data/CandidatoRepositoryImpl/CandidatoRepositoryImpl';
 
 const repository = new CandidatoRepositoryImpl()
@@ -24,6 +24,18 @@ export const getCandidatoById = createAsyncThunk<EditCandidatoEntity, number, { 
   async (data, thunkAPI) => {
     try {
       return await repository.getCandidatoById(data);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Error desconocido";
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const getCandidatoConDetalleById = createAsyncThunk<EditCandidatoConDetalleEntity, number, { rejectValue: string }>(
+  "candidato/GetCandidatoConDetalleById",
+  async (data, thunkAPI) => {
+    try {
+      return await repository.getCandidatoConDetalleById(data);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Error desconocido";
       return thunkAPI.rejectWithValue(errorMessage);

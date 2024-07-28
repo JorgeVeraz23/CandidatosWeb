@@ -25,3 +25,29 @@ export type MostrarCandidatoEntity = {
     nombrePartido: string,
     cargo: string,
 }
+
+export type PropuestaEntity = {
+    idPropuesta: number,
+    titulo: string,
+    descripcion: string,
+    area: string,
+    idCandidato: number | null,
+}
+
+
+export type MostrarCandidatoConDetalleEntity = {
+    idCandidato: number,
+    nombreCandidato: string,
+    edad: number,
+    fotoUrl: string,
+    lugarDeNacimiento: string,
+    informacionDeContacto: string,
+    nombrePartido: string,
+    cargo: string,
+    propuestas: PropuestaEntity[],
+}
+
+
+export type EditCandidatoConDetalleEntity = MostrarCandidatoConDetalleEntity & {
+    idCandidato: number,
+}

@@ -115,7 +115,8 @@ export const CREATE_CANDIDATO = `${CANDIDATO_PREFIX}CrearCandidato`;
 export const GET_CANDIDATO = (idCandidato: number) => `${CANDIDATO_PREFIX}GetCandidatos?IdCandidato=${idCandidato}`;
 export const DELETE_CANDIDATO = (idCandidato: number) => `${CANDIDATO_PREFIX}EliminarCandidato?IdCandidato=${idCandidato}`;
 export const UPDATE_CANDIDATO = `${CANDIDATO_PREFIX}ActualizarCandidatos`;
-//#endregion
+export const GETCANDIDATO_CONDETALES = (idCandidato: number) => `${CANDIDATO_PREFIX}GetCandidatoConDetalles?IdCandidato=${idCandidato}`;
+//#endregions
 
 //#region Partido
 const PARTIDO_PREFIX = "Partido/";
