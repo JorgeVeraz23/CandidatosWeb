@@ -70,7 +70,7 @@ function Illustration() {
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="blue" textAlign="center">
-          <Image src={ElectroAnalyzer} /> Inicia sesión en Electro Analyzer
+          <Image src={ElectroAnalyzer} /> Inicia sesión en Electo Analyzer
         </Header>
         <Form size="large" onSubmit={handleSignIn}>
           <Segment stacked>

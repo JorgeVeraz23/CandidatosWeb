@@ -29,7 +29,7 @@ import DataTable from "examples/Tables/DataTable";
 import { showAlertAsync } from "layouts/pages/sweet-alerts/components/CustomAlert";
 import { Checkbox, CircularProgress, Tooltip } from "@mui/material";
 
-
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 
 //Entities
 import { MostrarPropuestaEntity, EditarPropuestaEntity } from "app/api/domain/entities/PropuestasEntities/PropuestaEntity";
