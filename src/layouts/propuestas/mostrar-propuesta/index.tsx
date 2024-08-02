@@ -194,7 +194,7 @@ export default function PropuestaList() {
         titulo: item.titulo,
         descripción: item.descripción,
         area: item.area,
-        nombreCandidato: item.nombreCandidato,
+        idCandidato: item.nombreCandidato,
         actions: (
           <SoftBox display="flex">
             <SoftBox mr={1}>

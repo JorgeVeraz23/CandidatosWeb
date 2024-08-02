@@ -85,7 +85,7 @@ export default function CandidatoList() {
                   height="300"
                   image={candidato.fotoUrl}
                   alt={candidato.nombreCandidato}
-                  sx={{ objectFit: 'cover' }}
+                  sx={{ objectFit: 'contain' }}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div" sx={{ color: theme.palette.primary.main }}>

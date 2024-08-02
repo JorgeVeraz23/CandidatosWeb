@@ -31,7 +31,7 @@ export default class PropuestaRepositoryImpl implements PropuestaRepository {
             titulo: item.titulo,
             descripción: item.descripción,
             area: item.area,
-            nombreCandidato: item.area,
+            nombreCandidato: item.nombreCandidato,
         });
       }
       return result;

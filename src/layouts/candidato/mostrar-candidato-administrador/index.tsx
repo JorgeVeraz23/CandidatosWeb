@@ -370,12 +370,25 @@ export default function CandidatoAdministradorList() {
                 <SoftBox display="flex" flexDirection="column" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold">
-                      Descripción
+                      Foto URL
                     </SoftTypography>
                   </SoftBox>
                   <SoftInput
                     value={editCandidatoData.fotoUrl}
                     onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'fotoUrl')}
+                  />
+                </SoftBox>
+              </Grid>
+              <Grid item xs={12}>
+                <SoftBox display="flex" flexDirection="column" height="100%">
+                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                    <SoftTypography component="label" variant="caption" fontWeight="bold">
+                      Lugar de nacimiento
+                    </SoftTypography>
+                  </SoftBox>
+                  <SoftInput
+                    value={editCandidatoData.lugarDeNacimiento}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleInputChange(event, 'lugarDeNacimiento')}
                   />
                 </SoftBox>
               </Grid>
