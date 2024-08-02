@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'app/redux/hooks';
 import { useNavigate } from 'react-router-dom';
-import { Grid, Card, CardContent, CardMedia, Typography, CircularProgress, Box, Tooltip, Button } from '@mui/material';
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CircularProgress,
+  Box,
+  Tooltip,
+  Button,
+  useTheme,
+  useMediaQuery
+} from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
-// Soft UI Dashboard PRO React components
 import SoftBox from 'components/SoftBox';
 import SoftTypography from 'components/SoftTypography';
-
-// Actions
 import { getAllCandidato, getCandidatoConDetalleById } from 'app/redux/actions/CandidatoActions/CandidatoActions';
-
-// Slices
 import { getAllCandidatoSlice } from 'app/redux/slices/candidato/MostrarCandidatoSlice';
 import { getCandidatoSlice } from 'app/redux/slices/candidato/ObtenerCandidatoSlice';
-import { showAlertAsync } from 'layouts/pages/sweet-alerts/components/CustomAlert';
 import { EditCandidatoConDetalleEntity } from 'app/api/domain/entities/CandidatoEntities/CandidatoEntity';
 
 export default function CandidatoList() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const MostrarCandidatoState = useAppSelector(state => state.mostrarCandidato);
 
@@ -31,11 +39,11 @@ export default function CandidatoList() {
   const init = async () => {
     await handleResetData();
     dispatch(getAllCandidato());
-  }
+  };
 
   const handleResetData = async () => {
     dispatch(getAllCandidatoSlice.actions.resetState());
-  }
+  };
 
   const handleViewCandidatoDetail = async (id: number) => {
     try {
@@ -44,33 +52,43 @@ export default function CandidatoList() {
         setSelectedCandidatoDetail(actionResult.payload);
         navigate(`/app/candidatos/mostrar-candidato-administrador-con-detalle`, { state: { idCandidato: id } });
       } else {
-        console.error("No se pudo obtener la información del candidato");
+        console.error('No se pudo obtener la información del candidato');
       }
     } catch (error) {
-      console.error("Error al obtener la información del candidato:", error);
+      console.error('Error al obtener la información del candidato:', error);
     }
   };
 
   const renderList = () => {
     return (
-      <Grid container spacing={4}>
+      <Grid container spacing={2} justifyContent="center">
         {MostrarCandidatoState.loading ? (
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <CircularProgress />
           </Grid>
         ) : (
           MostrarCandidatoState.data?.map((candidato, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ maxWidth: 400, borderRadius: '15px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+            <Grid item xs={12} sm={6} md={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Card
+                sx={{
+                  width: '90%',
+                  borderRadius: '15px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  transition: 'transform 0.3s',
+                  '&:hover': {
+                    transform: 'translateY(-8px)'
+                  }
+                }}
+              >
                 <CardMedia
                   component="img"
-                  height="200"
+                  height="300"
                   image={candidato.fotoUrl}
                   alt={candidato.nombreCandidato}
-                  sx={{ objectFit: 'contain' }}
+                  sx={{ objectFit: 'cover' }}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div" sx={{ color: theme.palette.primary.main }}>
                     {candidato.nombreCandidato}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -106,9 +124,13 @@ export default function CandidatoList() {
   return (
     <SoftBox>
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
-        <SoftTypography variant="h1">Lista de Candidatos</SoftTypography>
+        <SoftTypography variant={isSmallScreen ? 'h3' : 'h1'} align="center">
+          Lista de Candidatos
+        </SoftTypography>
       </Box>
-      {renderList()}
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        {renderList()}
+      </Box>
     </SoftBox>
   );
 }

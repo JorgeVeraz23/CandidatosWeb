@@ -205,7 +205,7 @@ export default function App() {
       <Routes>
         {getRoutes(login)}
        
-
+        
         <Route path="" element={<Navigate to="/inicio/bienvenido" />} />
         {<Route path="*" element={<Navigate to="/error/404" />} />}
         {getRoutes(routes)}

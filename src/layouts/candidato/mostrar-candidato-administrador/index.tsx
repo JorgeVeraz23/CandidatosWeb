@@ -399,7 +399,7 @@ export default function CandidatoAdministradorList() {
                 <SoftBox display="flex" flexDirection="column" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold">
-                      Cargo
+                      Partido Politico
                     </SoftTypography>
                   </SoftBox>
                   <CustomSelect
